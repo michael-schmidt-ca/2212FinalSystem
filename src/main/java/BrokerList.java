@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class BrokerList {
     private ArrayList<Broker> brokerArrayList;
 
+
+
     public ArrayList<Broker> getBrokerArrayList() {return brokerArrayList;}
 
     public Broker getBroker(String brokerName){// gets name of broker - not v efficient

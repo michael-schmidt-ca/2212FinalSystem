@@ -1,17 +1,17 @@
-public class GammaSqueeze implements Strategy{
-
-    // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
+public class ValueInvestingStrategy implements Strategy{
+    // STRATEGY NEED TO CHANGE TO ACTUAL CRYPTO COINS
+    // NEED TO WATCH OUT FOR NULL POINTER EXCEPTION HERE - NEED TO HANDLE
     @Override
     public StrategyResult calcStrategy(String[] coinList, Double[] coinPriceList) {
-        if (coinIndex("BTC", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
-                || coinIndex("ETH",coinList)==-1)
+        if (coinIndex("COINA", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
+                || coinIndex("COIN B",coinList)==-1)
             System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
         else{
-            if (getCoinPrice("btc",coinList,coinPriceList)>60000
-                    && getCoinPrice("eth",coinList,coinPriceList)<4000)
-                return new StrategyResult(1000000, "BTC", "Sell", java.time.LocalDate.now(),getCoinPrice("BTC",coinList,coinPriceList));
+            if (getCoinPrice("COINA",coinList,coinPriceList)>80000
+                    && getCoinPrice("COINB",coinList,coinPriceList)<2000)
+                return new StrategyResult(1000000, "COINA", "BUY", java.time.LocalDate.now(),getCoinPrice("COINA",coinList,coinPriceList));
 
-            else return new StrategyResult(1000000, "ETH", "Sell", java.time.LocalDate.now(),getCoinPrice("eth",coinList,coinPriceList));
+            else return new StrategyResult(100, "COINB", "BUY", java.time.LocalDate.now(),getCoinPrice("COINB",coinList,coinPriceList));
         }
 
 
@@ -39,5 +39,4 @@ public class GammaSqueeze implements Strategy{
         }
         else return coinPriceList[coinIndex];
     }
-
 }

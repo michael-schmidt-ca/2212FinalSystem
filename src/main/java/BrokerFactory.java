@@ -1,10 +1,11 @@
 public class BrokerFactory {
 
     public Broker create(UsrSelection usrSelection){// factory for creating the broker
-        Broker newBroker = new Broker(retrieveName(usrSelection),
+        return new Broker(
+                retrieveName(usrSelection),
                 retrieveTckrLst(usrSelection),
                 retrieveStrategy(usrSelection));
-        return newBroker;
+
 
     }
 
@@ -16,7 +17,7 @@ public class BrokerFactory {
         return usrSelection.getTckrLst().split(",");
     }
     private Strategy retrieveStrategy(UsrSelection usrSelection){
-        var factory = new StrategyFactory();
+        StrategyFactory factory = new StrategyFactory();
         return factory.create(usrSelection.getStrategy());
 
          // NEED TO CREATE A STRATEGY FACTORY METHOD
