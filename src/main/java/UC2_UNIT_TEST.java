@@ -50,10 +50,6 @@ public class UC2_UNIT_TEST {
         System.out.println(tckrLstCharles[0]);
         System.out.println(tckrLstCharles[1]);
 
-
-
-
-
 // 4) TESTING THE ADDING OF BROKERS
         System.out.println("TESTING ADD FEATURE OF BROKER LIST");
         brokerList.addBroker(fidelity); // ADDING BROKER TO LIST
@@ -65,17 +61,36 @@ public class UC2_UNIT_TEST {
         }
 // 5)
         // TO CHANGE A VALUE THE USER WOULD ENTER A STRING TO THE UI which would then amend the associated userSelection object
-        System.out.println("hi \n TESTING UPDATE COINS ");
-
-        usrSelect1.setTckrLst("COINA,COINB");
-       String[] updatedCoinTckrLst =  brokerFactory.create(usrSelect1).getCryptoTickerList();
-       fidelity.setCryptoTickerList(updatedCoinTckrLst);
+        brokerList.editCoinList(fidelity,"COINA,COINB",usrSelect1);
         for (Broker b : brokerList.getBrokerArrayList()) {
+
             String[] coinList = b.getCryptoTickerList();
             for (String coin : coinList) {
                 System.out.println(coin);
             }// NESTED FOR LOOP END
         }// FOR LOOP END // POOP
+//6)
+        // CREATE UPDATE coin/ update
+        // Same weird update as other - might need to make these updates methods
+        brokerList.editStrategy(fidelity,"ValueInvestingStrategy",usrSelect1);
+        for (Broker b : brokerList.getBrokerArrayList()) {
+
+            System.out.println(b.getStrategy().getClass());
+            }// NESTED FOR LOOP END
+        // FOR LOOP END // POOP
+
+// 7)
+
+        brokerList.removeBroker(fidelity);
+        System.out.println("REMOVING BROKER - should only be getting Charles");
+        for (Broker b : brokerList.getBrokerArrayList()) {
+
+            System.out.println(b.getName());
+
+        }
+
+
+
 
 
 
