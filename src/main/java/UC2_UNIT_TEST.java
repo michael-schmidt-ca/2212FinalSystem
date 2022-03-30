@@ -65,7 +65,7 @@ public class UC2_UNIT_TEST {
         }
 // 5)
         // TO CHANGE A VALUE THE USER WOULD ENTER A STRING TO THE UI which would then amend the associated userSelection object
-        System.out.println("TESTING UPDATE COINS ");
+        System.out.println("hi \n TESTING UPDATE COINS ");
 
         usrSelect1.setTckrLst("COINA,COINB");
        String[] updatedCoinTckrLst =  brokerFactory.create(usrSelect1).getCryptoTickerList();
@@ -76,6 +76,7 @@ public class UC2_UNIT_TEST {
                 System.out.println(coin);
             }// NESTED FOR LOOP END
         }// FOR LOOP END
+
 
 
 
