@@ -84,19 +84,7 @@ public class UC2_UNIT_TEST {
         brokerList.removeBroker(fidelity);
         System.out.println("REMOVING BROKER - should only be getting Charles");
         for (Broker b : brokerList.getBrokerArrayList()) {
-
             System.out.println(b.getName());
-
         }
-
-
-
-
-
-
-
-
-
-
-        }
+    }
 }
