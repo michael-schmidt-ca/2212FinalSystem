@@ -75,7 +75,7 @@ public class UC2_UNIT_TEST {
             for (String coin : coinList) {
                 System.out.println(coin);
             }// NESTED FOR LOOP END
-        }// FOR LOOP END
+        }// FOR LOOP END // POOP
 
 
 
