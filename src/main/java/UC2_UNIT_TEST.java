@@ -61,17 +61,26 @@ public class UC2_UNIT_TEST {
 
         for (Broker b : brokerList.getBrokerArrayList()){
             System.out.println(b.getName());
+
         }
+// 5)
+        // TO CHANGE A VALUE THE USER WOULD ENTER A STRING TO THE UI which would then amend the associated userSelection object
+        System.out.println("TESTING UPDATE COINS ");
+
+        usrSelect1.setTckrLst("COINA,COINB");
+       String[] updatedCoinTckrLst =  brokerFactory.create(usrSelect1).getCryptoTickerList();
+       fidelity.setCryptoTickerList(updatedCoinTckrLst);
+        for (Broker b : brokerList.getBrokerArrayList()) {
+            String[] coinList = b.getCryptoTickerList();
+            for (String coin : coinList) {
+                System.out.println(coin);
+            }// NESTED FOR LOOP END
+        }// FOR LOOP END
 
 
-        // TEST TO SEE IF SUCCESFULLY ADDED
 
 
 
 
-
-
-
-
-    }
+        }
 }
