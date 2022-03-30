@@ -2,7 +2,9 @@ import java.util.ArrayList;
 // DIDNT ADD SAVE BROKER NOT SURE HOW I WOULD
 public class BrokerList {
     private ArrayList<Broker> brokerArrayList;
-
+    BrokerList(){
+        brokerArrayList = new ArrayList<>();
+    }
 
 
     public ArrayList<Broker> getBrokerArrayList() {return brokerArrayList;}

@@ -1,7 +1,9 @@
 import java.sql.SQLOutput;
 
 public class UC2_UNIT_TEST {
+
     /*
+    PRE CONDITION - COINS ENTERED ARE THE RIGHT COIN FOR THE TRADE - this will only impact uc3
     * 1) CREATE A USER SELECTION OBJECT
     * 2) CREATE A BROKER FACTORY (THIS SHOULD CALL THE STRATEGY FACTORY)
     * 3) Create 2 brokers
@@ -52,10 +54,17 @@ public class UC2_UNIT_TEST {
 
 
 
-// 4)
-//        brokerList.addBroker(fidelity); // ADDING BROKER TO LIST
-//        brokerList.addBroker(charlesSchwab);
-//        // TEST TO SEE IF SUCCESFULLY ADDED
+// 4) TESTING THE ADDING OF BROKERS
+        System.out.println("TESTING ADD FEATURE OF BROKER LIST");
+        brokerList.addBroker(fidelity); // ADDING BROKER TO LIST
+        brokerList.addBroker(charlesSchwab);
+
+        for (Broker b : brokerList.getBrokerArrayList()){
+            System.out.println(b.getName());
+        }
+
+
+        // TEST TO SEE IF SUCCESFULLY ADDED
 
 
 

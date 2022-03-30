@@ -20,6 +20,6 @@ public class BrokerFactory {
         StrategyFactory factory = new StrategyFactory();
         return factory.create(usrSelection.getStrategy());
 
-         // NEED TO CREATE A STRATEGY FACTORY METHOD
+
     }
 }
