@@ -4,11 +4,9 @@ import java.util.HashMap;
 public class CoinsInfo {
 
     private HashMap<String, Coin> coinsMap;
-    private String dataBaseIdentifier;
 
     public CoinsInfo(){
         coinsMap = new HashMap<String, Coin>();
-        dataBaseIdentifier = "TEST DATABASE";
     }
 
     public Coin getCoinInfo(String coinName){
@@ -29,7 +27,7 @@ public class CoinsInfo {
     }
 
     public String toString(){
-        String retString = dataBaseIdentifier + "\n";
+        String retString = "";
         for (Object value : coinsMap.values()) {
             retString += value.toString() + "\n";
         }
@@ -39,14 +37,12 @@ public class CoinsInfo {
 
     public static void main(String[] args) {
 
-        CoinsInfo coinDatabase = new CoinsInfo();
+        CoinsInfo bruh = new CoinsInfo();
 
-        String [] newList = {"bitcoin","ethereum","dogecoin"};
-
-        coinDatabase.updateInfo(newList);
-
-        System.out.println();
-        System.out.println(coinDatabase.getCoinInfo("bitcoin").getPrice());
+        String [] newList = {"bitcoin","ethereum"};
+        CoinGeckoConnector.basicCall(newList, "usd", new HashMap<String, Coin>());
+        System.out.println(bruh);
+        System.out.println(bruh.getCoinInfo("Ethereum").getPrice());
 
     }
 

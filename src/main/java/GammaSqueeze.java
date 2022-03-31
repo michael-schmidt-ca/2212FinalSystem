@@ -1,21 +1,35 @@
 public class GammaSqueeze implements Strategy{
 
     // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
+    private String name = "GammaSqueeze";
     @Override
-    public StrategyResult calcStrategy(String[] coinList, Double[] coinPriceList) {
-        if (coinIndex("BTC", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
-                || coinIndex("ETH",coinList)==-1)
-            System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
-        else{
-            if (getCoinPrice("btc",coinList,coinPriceList)>60000
-                    && getCoinPrice("eth",coinList,coinPriceList)<4000)
-                return new StrategyResult(1000000, "BTC", "Sell", java.time.LocalDate.now(),getCoinPrice("BTC",coinList,coinPriceList));
+    public StrategyResult calcStrategy(Broker b) {
+        CoinsInfo cInfo = new CoinsInfo();
+        String[] coinList = b.getCryptoTickerList();
 
-            else return new StrategyResult(1000000, "ETH", "Sell", java.time.LocalDate.now(),getCoinPrice("eth",coinList,coinPriceList));
+
+        if (coinIndex("BTC", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
+                || coinIndex("ETH",coinList)==-1){
+            System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
+        return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),null,b, b.getStrategy());
         }
 
+        else{
+            // Initialise coin objects
+            Double coinAPrice = cInfo.getCoinInfo("Bitcoin").getPrice();
+           Double coinBPrice = cInfo.getCoinInfo("ethereum").getPrice();
 
-        return null;
+            if (coinAPrice>60000
+                    && coinBPrice<4000)
+                return new
+                        StrategyResult(1000000,
+                        "BTC", "Sell",
+                        java.time.LocalDate.now(),coinAPrice
+                        ,b, b.getStrategy());
+
+            else return new StrategyResult(1000000, "ETH", "Sell", java.time.LocalDate.now(),coinBPrice,b, b.getStrategy());
+        }
+
     }
     // METHOD RETURNS its index in the list if present and -1 if not in list
     private int coinIndex(String name, String[] list){
@@ -37,6 +51,9 @@ public class GammaSqueeze implements Strategy{
             return null;
         }
         else return coinPriceList[coinIndex];
+    }
+    public String getName(){
+    return name;
     }
 
 }
