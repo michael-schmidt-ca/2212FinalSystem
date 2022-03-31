@@ -2,20 +2,28 @@ public class GammaSqueeze implements Strategy{
 
     // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
     @Override
-    public StrategyResult calcStrategy(String[] coinList, Double[] coinPriceList,Broker b) {
+    public StrategyResult calcStrategy(Broker b) {
+        CoinsInfo cInfo = new CoinsInfo();
+        String[] coinList = b.getCryptoTickerList();
+
+
         if (coinIndex("BTC", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
                 || coinIndex("ETH",coinList)==-1)
             System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
         else{
-            if (getCoinPrice("btc",coinList,coinPriceList)>60000
-                    && getCoinPrice("eth",coinList,coinPriceList)<4000)
+            // Initialise coin objects
+            Double coinAPrice = cInfo.getCoinInfo("Bitcoin").getPrice();
+           Double coinBPrice = cInfo.getCoinInfo("ethereum").getPrice();
+
+            if (coinAPrice>60000
+                    && coinBPrice<4000)
                 return new
                         StrategyResult(1000000,
                         "BTC", "Sell",
-                        java.time.LocalDate.now(),getCoinPrice("BTC",coinList,coinPriceList)
+                        java.time.LocalDate.now(),coinAPrice
                         ,b);
 
-            else return new StrategyResult(1000000, "ETH", "Sell", java.time.LocalDate.now(),getCoinPrice("eth",coinList,coinPriceList),b);
+            else return new StrategyResult(1000000, "ETH", "Sell", java.time.LocalDate.now(),coinBPrice,b);
         }
 
 

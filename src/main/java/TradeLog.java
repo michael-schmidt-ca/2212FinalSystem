@@ -3,13 +3,11 @@ import java.util.ArrayList;
 * */
 
 public class TradeLog {
-    // DONT THINK I SHOULD BE CREATING OBJECTS HERE NOT SURE BUT FOR FUNCTIONALITY FOR NOW WILL DO
-    private  HistogramViewer graph;
-    private TableViewer tableViewer;
+
 
     private ArrayList<Observer> observers = new ArrayList<>();
     private ArrayList<StrategyResult> trades = new ArrayList<>();
-    TradeLog(){
+    TradeLog( HistogramViewer graph,TableViewer tableViewer){
         observers.add(graph);
         observers.add(tableViewer);
 
@@ -32,5 +30,7 @@ public class TradeLog {
             o.update();
         }
     }
+    public boolean addTrade(StrategyResult s){return trades.add(s);}
+
 
 }

@@ -10,8 +10,7 @@ public class BrokerList {
 
     private ArrayList<Broker> brokerArrayList = new ArrayList();
 
-    BrokerList() {
-    }
+
 
     public ArrayList<Broker> getBrokerArrayList() {
         return this.brokerArrayList;
@@ -52,5 +51,14 @@ public class BrokerList {
         originalSelectionObject.setStrategy(stratEnteredToUI);
         Strategy updatedStrat = tempUpdater.create(originalSelectionObject).getStrategy();
         b.setStrategy(updatedStrat);
+    }
+    /*BIG DADDY TRADING METHOD */
+    public void trade(TradeLog tradeLog){
+        for (Broker broker: brokerArrayList){
+            StrategyResult result = broker.getStrategy().calcStrategy(broker);
+            tradeLog.addTrade(result);
+        }
+        tradeLog.notifyObservers();
+
     }
 }

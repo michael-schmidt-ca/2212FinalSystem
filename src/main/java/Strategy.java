@@ -1,4 +1,4 @@
 public interface Strategy {
-    public StrategyResult calcStrategy(String[] coinList, Double[] coinPriceList,Broker b );
+    public StrategyResult calcStrategy(Broker b );
 
 }
