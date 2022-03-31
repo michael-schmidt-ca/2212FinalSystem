@@ -37,11 +37,14 @@ public class CoinsInfo {
 
     public static void main(String[] args) {
 
-        CoinsInfo bruh = new CoinsInfo();
+        CoinsInfo coinDatabase = new CoinsInfo();
 
         String [] newList = {"bitcoin","ethereum"};
-        CoinGeckoConnector.basicCall(newList, "usd", new HashMap<String, Coin>());
-        System.out.println(bruh);
+
+        coinDatabase.updateInfo(newList);
+
+        System.out.println();
+        System.out.println(coinDatabase);
 
     }
 
