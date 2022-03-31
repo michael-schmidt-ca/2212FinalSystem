@@ -22,4 +22,13 @@ public class CoinsInfo {
 
     }
 
+    public String toString(){
+        String retString = "";
+        for (Object value : coinsMap.values()) {
+            retString += value.toString() + "\n";
+        }
+        retString += "\n";
+        return retString;
+    }
+
 }
