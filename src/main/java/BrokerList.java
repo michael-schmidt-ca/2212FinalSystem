@@ -5,8 +5,9 @@
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
+/*BrokerList = Controller (Observer design pattern)*/
 public class BrokerList {
+
     private ArrayList<Broker> brokerArrayList = new ArrayList();
 
     BrokerList() {

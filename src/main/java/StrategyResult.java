@@ -7,13 +7,15 @@ public class StrategyResult {
     private String action;
     private LocalDate date;
     private Double price;
+    private Broker broker;
 
-    public StrategyResult(int quantity, String coin, String action, LocalDate date, Double price) {
+    public StrategyResult(int quantity, String coin, String action, LocalDate date, Double price,Broker broker) {
         this.quantity = quantity;
         this.coin = coin;
         this.action = action;
         this.date = date;
         this.price = price;
+        this.broker = broker;
     }
 
 
@@ -55,5 +57,13 @@ public class StrategyResult {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Broker getBroker() {
+        return broker;
+    }
+
+    public void setBroker(Broker broker) {
+        this.broker = broker;
     }
 }

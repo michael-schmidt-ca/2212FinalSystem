@@ -1,15 +1,18 @@
 import java.util.ArrayList;
+/*TradeLog = ConcreteSubject (Observer design pattern)
+* */
 
 public class TradeLog {
-    private ArrayList<Trade> trades;
 
-    public ArrayList<Trade> getTrades() {
+    private ArrayList<StrategyResult> trades;
+
+    public ArrayList<StrategyResult> getTrades() {
         return trades;
     }
-    public Trade getTrade(String broker, String date){
+    public StrategyResult getTrade(String broker, String date){
 
-        for (Trade trade: trades){
-            if (trade.getDate().equals(date) && trade.getBrokerName().equals(broker)) return trade;
+        for (StrategyResult trade: trades){
+            if (trade.getDate().equals(date) && trade.getBroker().getName().equals(broker))return trade;
         }
         return null;
     }
