@@ -5,6 +5,10 @@ public class CoinsInfo {
 
     private HashMap<String, Coin> coinsMap;
 
+    public CoinsInfo(){
+        coinsMap = new HashMap<String, Coin>();
+    }
+
     public Coin getCoinInfo(String coinName){
         return coinsMap.get(coinName);
     }
@@ -29,6 +33,16 @@ public class CoinsInfo {
         }
         retString += "\n";
         return retString;
+    }
+
+    public static void main(String[] args) {
+
+        CoinsInfo bruh = new CoinsInfo();
+
+        String [] newList = {"bitcoin","ethereum"};
+        CoinGeckoConnector.basicCall(newList, "usd", new HashMap<String, Coin>());
+        System.out.println(bruh);
+
     }
 
 }

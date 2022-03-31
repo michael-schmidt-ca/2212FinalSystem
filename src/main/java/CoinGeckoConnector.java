@@ -12,13 +12,7 @@ import org.json.simple.parser.ParseException;
 
 public class CoinGeckoConnector {
 
-    public static void main(String[] args) {
 
-        String [] newList = {"bitcoin","ethereum"};
-        basicCall(newList, "usd", new HashMap<String, Coin>());
-
-
-    }
 
     public static HashMap<String, Coin> basicCall(String[] coinsList, String currencyType, HashMap<String, Coin> curMap) {
         try {
