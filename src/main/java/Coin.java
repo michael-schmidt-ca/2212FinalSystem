@@ -27,7 +27,7 @@ public class Coin {
     }
 
     public String toString(){
-        return ("Full Name: " + ticker + "\nTicker: " + fullName + "\nPrice: " + price + "\n");
+        return ("Full Name: " + fullName + "\nTicker: " + ticker + "\nPrice: " + price + "\n");
     }
 
 }
