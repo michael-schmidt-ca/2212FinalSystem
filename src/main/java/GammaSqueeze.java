@@ -25,7 +25,6 @@ public class GammaSqueeze implements Strategy{
             if (n.equals(name)) return count;
         }
         return -1;
-
     }
     /*METHOD GETS THE COIN In the list-
     BIG ASSUMPTION THAT COIN PRICE AT SAME INDEx AS THE COIN NAME e.g.
