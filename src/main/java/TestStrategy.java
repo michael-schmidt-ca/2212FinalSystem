@@ -1,0 +1,73 @@
+public class TestStrategy implements Strategy{
+
+
+
+        // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
+        private final String name ="TestStrategy";
+    @Override
+        public StrategyResult calcStrategy(Broker b) {
+            CoinsInfo cInfo = new CoinsInfo();
+            String[] coinList = b.getCryptoTickerList();
+
+
+            if (coinIndex("BTC", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
+                    || coinIndex("ETH",coinList)==-1){
+                System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
+                return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),null,b, b.getStrategy());
+            }
+
+            else{
+                // Initialise coin objects
+//                Double coinAPrice = cInfo.getCoinInfo("Bitcoin").getPrice();
+//                Double coinBPrice = cInfo.getCoinInfo("ethereum").getPrice();\
+                Double coinAPrice = 60000.01;
+                Double coinBPrice = 3999.9;
+
+                if (coinAPrice>60000
+                        && 20<4000) // RANDOM NUMBERS TO MAKE IT EXECUTE ALL THE TIME
+                    return new
+                            StrategyResult(1000000,
+                            "BTC", "Sell",
+                            java.time.LocalDate.now(),100000.0//
+                            ,b, b.getStrategy());
+
+                else return new
+                        StrategyResult(
+                                1000000,
+                        "ETH",
+                        "Sell",
+                        java.time.LocalDate.now(),
+                        coinBPrice,
+                        b,
+                        b.getStrategy());
+            }
+
+        }
+        // METHOD RETURNS its index in the list if present and -1 if not in list
+        private int coinIndex(String name, String[] list){
+            int count = 0;
+            for (String n : list){
+                count ++;
+                if (n.equals(name)) return count;
+            }
+            return -1;
+        }
+        /*METHOD GETS THE COIN In the list-
+        BIG ASSUMPTION THAT COIN PRICE AT SAME INDEx AS THE COIN NAME e.g.
+        CoinList = {"BTC", "ETH"},coinPriceList = {60000.84,3000.32} where coinPriceList[0]= is the price of BTC AND coinPriceList[1] = price of ETH
+        */
+        private Double getCoinPrice(String name, String[] coinList, Double[] coinPriceList){
+            int coinIndex = coinIndex(name, coinList);
+            if (coinIndex == -1) {
+                System.out.println(" NOT ENOUGH INFO - need to do smt specific here I think");
+                return null;
+            }
+            else return coinPriceList[coinIndex];
+        }
+        public String getName(){
+            return name;
+        }
+
+
+
+}

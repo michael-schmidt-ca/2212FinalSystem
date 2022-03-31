@@ -42,6 +42,7 @@ public class CoinsInfo {
         String [] newList = {"bitcoin","ethereum"};
         CoinGeckoConnector.basicCall(newList, "usd", new HashMap<String, Coin>());
         System.out.println(bruh);
+        System.out.println(bruh.getCoinInfo("Ethereum").getPrice());
 
     }
 

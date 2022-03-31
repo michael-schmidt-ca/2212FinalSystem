@@ -1,6 +1,7 @@
 public class GammaSqueeze implements Strategy{
 
     // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
+    private String name = "GammaSqueeze";
     @Override
     public StrategyResult calcStrategy(Broker b) {
         CoinsInfo cInfo = new CoinsInfo();
@@ -8,8 +9,11 @@ public class GammaSqueeze implements Strategy{
 
 
         if (coinIndex("BTC", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
-                || coinIndex("ETH",coinList)==-1)
+                || coinIndex("ETH",coinList)==-1){
             System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
+        return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),null,b, b.getStrategy());
+        }
+
         else{
             // Initialise coin objects
             Double coinAPrice = cInfo.getCoinInfo("Bitcoin").getPrice();
@@ -21,13 +25,11 @@ public class GammaSqueeze implements Strategy{
                         StrategyResult(1000000,
                         "BTC", "Sell",
                         java.time.LocalDate.now(),coinAPrice
-                        ,b);
+                        ,b, b.getStrategy());
 
-            else return new StrategyResult(1000000, "ETH", "Sell", java.time.LocalDate.now(),coinBPrice,b);
+            else return new StrategyResult(1000000, "ETH", "Sell", java.time.LocalDate.now(),coinBPrice,b, b.getStrategy());
         }
 
-
-        return null;
     }
     // METHOD RETURNS its index in the list if present and -1 if not in list
     private int coinIndex(String name, String[] list){
@@ -49,6 +51,9 @@ public class GammaSqueeze implements Strategy{
             return null;
         }
         else return coinPriceList[coinIndex];
+    }
+    public String getName(){
+    return name;
     }
 
 }

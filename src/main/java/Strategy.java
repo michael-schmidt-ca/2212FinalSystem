@@ -1,4 +1,7 @@
 public interface Strategy {
-    public StrategyResult calcStrategy(Broker b );
+
+     StrategyResult calcStrategy(Broker b );
+    String getName();
+
 
 }
