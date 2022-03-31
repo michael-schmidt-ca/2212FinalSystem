@@ -74,13 +74,11 @@ public class UC2_UNIT_TEST {
         // Same weird update as other - might need to make these updates methods
         brokerList.editStrategy(fidelity,"ValueInvestingStrategy",usrSelect1);
         for (Broker b : brokerList.getBrokerArrayList()) {
-
             System.out.println(b.getStrategy().getClass());
             }// NESTED FOR LOOP END
         // FOR LOOP END // POOP
 
 // 7)
-
         brokerList.removeBroker(fidelity);
         System.out.println("REMOVING BROKER - should only be getting Charles");
         for (Broker b : brokerList.getBrokerArrayList()) {
