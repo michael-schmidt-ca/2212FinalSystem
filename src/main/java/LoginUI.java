@@ -74,7 +74,7 @@ public class LoginUI extends JFrame implements ActionListener {
         if(e.getSource() == loginBtn){
             String User = username.getText().toLowerCase();
             String Pass = String.valueOf(password.getPassword());
-            if(User.isBlank() && Pass.isBlank())
+            if(User.isEmpty() && Pass.isEmpty())
                 JOptionPane.showMessageDialog(this, "Enter your Username and Password");
             else {
                 if (LoginValidator.validate(User, Pass)) {
