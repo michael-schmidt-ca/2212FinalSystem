@@ -46,7 +46,7 @@ public class CoinsInfo {
         coinDatabase.updateInfo(newList);
 
         System.out.println();
-        System.out.println(coinDatabase);
+        System.out.println(coinDatabase.getCoinInfo("bitcoin").getPrice());
 
     }
 
