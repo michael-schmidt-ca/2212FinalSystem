@@ -10,8 +10,8 @@ public class TestStrategy implements Strategy{
             String[] coinList = b.getCryptoTickerList();
 
 
-            if (coinIndex("BTC", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
-                    || coinIndex("ETH",coinList)==-1){
+            if (coinIndex("bitcoin", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
+                    || coinIndex("ethereum",coinList)==-1){
                 System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
                 return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),null,b, b.getStrategy());
             }
@@ -20,10 +20,10 @@ public class TestStrategy implements Strategy{
                 // Initialise coin objects
 //                Double coinAPrice = cInfo.getCoinInfo("Bitcoin").getPrice();
 //                Double coinBPrice = cInfo.getCoinInfo("ethereum").getPrice();\
-//                double coinAPrice = coinDataBase.getCoinInfo("bitcoin").getPrice();
-//                double coinBPrice = coinDataBase.getCoinInfo("ethereum").getPrice();
-                double coinAPrice = 2000000000.0;
-                double coinBPrice =2.0;
+                double coinAPrice = coinDataBase.getCoinInfo("bitcoin").getPrice();
+                double coinBPrice = coinDataBase.getCoinInfo("ethereum").getPrice();
+//                double coinAPrice = 2000000000.0;
+//                double coinBPrice =2.0;
 
                 if (coinAPrice>46188.00
                         && coinBPrice<3446.88)

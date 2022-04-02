@@ -75,7 +75,7 @@ public class BrokerList {
             }// end of nested for loop
 
         }// BrokerList For loop
-        return exhaustiveCoinList.toArray(new String[exhaustiveCoinList.size()]); // returns a String[] object
+        return exhaustiveCoinList.toArray(new String[0]); // returns a String[] object
     }// End of method
 
     private boolean tickerInList(String ticker){
