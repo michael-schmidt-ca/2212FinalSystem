@@ -5,8 +5,8 @@ public class TestStrategy implements Strategy{
         // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
         private final String name ="TestStrategy";
     @Override
-        public StrategyResult calcStrategy(Broker b) {
-            CoinsInfo cInfo = new CoinsInfo();
+        public StrategyResult calcStrategy(Broker b, CoinsInfo coinDataBase) {
+
             String[] coinList = b.getCryptoTickerList();
 
 
@@ -20,11 +20,13 @@ public class TestStrategy implements Strategy{
                 // Initialise coin objects
 //                Double coinAPrice = cInfo.getCoinInfo("Bitcoin").getPrice();
 //                Double coinBPrice = cInfo.getCoinInfo("ethereum").getPrice();\
-                Double coinAPrice = 60000.01;
-                Double coinBPrice = 3999.9;
+//                double coinAPrice = coinDataBase.getCoinInfo("bitcoin").getPrice();
+//                double coinBPrice = coinDataBase.getCoinInfo("ethereum").getPrice();
+                double coinAPrice = 2000000000.0;
+                double coinBPrice =2.0;
 
-                if (coinAPrice>60000
-                        && 20<4000) // RANDOM NUMBERS TO MAKE IT EXECUTE ALL THE TIME
+                if (coinAPrice>46188.00
+                        && coinBPrice<3446.88)
                     return new
                             StrategyResult(1000000,
                             "BTC", "Sell",
@@ -35,7 +37,7 @@ public class TestStrategy implements Strategy{
                         StrategyResult(
                                 1000000,
                         "ETH",
-                        "Sell",
+                        "BUY",
                         java.time.LocalDate.now(),
                         coinBPrice,
                         b,

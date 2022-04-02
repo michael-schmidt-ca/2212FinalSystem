@@ -55,9 +55,13 @@ public class BrokerList {
     }
     /*BIG DADDY TRADING METHOD */
     public void trade(TradeLog tradeLog){
+        String[] coins = getExhaustiveCoinList();
+        CoinsInfo coinDataBase = new CoinsInfo();
+        coinDataBase.updateInfo(coins);
+
 
         for (Broker broker: brokerArrayList){
-            StrategyResult result = broker.getStrategy().calcStrategy(broker);
+            StrategyResult result = broker.getStrategy().calcStrategy(broker,coinDataBase);
             tradeLog.addTrade(result);
         }
         tradeLog.notifyObservers();

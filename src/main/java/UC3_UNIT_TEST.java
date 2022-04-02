@@ -7,6 +7,14 @@ public class UC3_UNIT_TEST {
 
     *  */
     public static void main(String[] args) {
+        System.out.println("_________________ TEST CONNECT__________________");
+        String[] coins = {"bitcoin","ethereum","dogecoin"};
+        CoinsInfo coinDataBase = new CoinsInfo();
+        coinDataBase.updateInfo(coins);
+        System.out.println(coinDataBase.getCoinInfo("bitcoin").getPrice()+1);
+
+        System.out.println("-----------------------------------END----------------------------------------");
+
 
 
 // 1)
@@ -18,23 +26,23 @@ public class UC3_UNIT_TEST {
 // 2)
         // Creating usr selection
         UsrSelection usrSelect1 = new UsrSelection("Fidelity", "BTC,ETH", "TestStrategy");
-        UsrSelection usrSelect2 = new UsrSelection("CharleSchwab", "BTC,TH", "TestStrategy");
-        UsrSelection usrSelect3 = new UsrSelection("TD", "BTC,COINW", "TestStrategy");
+
 
         // Creating broker object
         BrokerFactory brokerFactory = new BrokerFactory();
         Broker fidelity = brokerFactory.create(usrSelect1);
-        Broker charlesSwchawb = brokerFactory.create(usrSelect2);
-        Broker tD = brokerFactory.create(usrSelect3);
+//        Broker charlesSwchawb = brokerFactory.create(usrSelect2);
+//        Broker tD = brokerFactory.create(usrSelect3);
 
         // Adding the brokers to broker list
         brokerList.addBroker(fidelity);
-        brokerList.addBroker(charlesSwchawb);
-        brokerList.addBroker(tD);
+//        brokerList.addBroker(charlesSwchawb);
+//        brokerList.addBroker(tD);
         // INTERLUDE TEST: testing creating exhaustive list of coins to get info on
         System.out.println("\n-----------------------------------EXHAUSTIVE COIN LIST INTERLUDE----------------------------------------\n");
         System.out.println("-----------------------------------START----------------------------------------\n");
         String[] exaustiveCoinList = brokerList.getExhaustiveCoinList();
+
         for (String s: exaustiveCoinList) System.out.println(s);
         System.out.println("-----------------------------------END----------------------------------------");
         System.out.println("\n-----------------------------------EXHAUSTIVE COIN LIST INTERLUDE----------------------------------------\n");
@@ -56,6 +64,7 @@ public class UC3_UNIT_TEST {
             System.out.println("Price: "+s.getPrice());
             System.out.println("Date: "+s.getDate());
         }
+
 
 
 

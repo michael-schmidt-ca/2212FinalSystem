@@ -3,7 +3,7 @@ public class GammaSqueeze implements Strategy{
     // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
     private String name = "GammaSqueeze";
     @Override
-    public StrategyResult calcStrategy(Broker b) {
+    public StrategyResult calcStrategy(Broker b, CoinsInfo coinDatabase) {
         CoinsInfo cInfo = new CoinsInfo();
         String[] coinList = b.getCryptoTickerList();
 
