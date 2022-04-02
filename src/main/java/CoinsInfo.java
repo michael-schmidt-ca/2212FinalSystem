@@ -27,7 +27,7 @@ public class CoinsInfo {
     }
 
     public String toString(){
-        String retString = "";
+        String retString = "Coin Database: \n";
         for (Object value : coinsMap.values()) {
             retString += value.toString() + "\n";
         }
@@ -39,10 +39,11 @@ public class CoinsInfo {
 
         CoinsInfo bruh = new CoinsInfo();
 
+
         String [] newList = {"bitcoin","ethereum"};
-        CoinGeckoConnector.basicCall(newList, "usd", new HashMap<String, Coin>());
+        bruh.updateInfo(newList);
         System.out.println(bruh);
-        System.out.println(bruh.getCoinInfo("Ethereum").getPrice());
+        System.out.println(bruh.getCoinInfo("ethereum").getPrice());
 
     }
 
