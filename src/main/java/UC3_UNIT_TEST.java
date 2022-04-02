@@ -7,30 +7,56 @@ public class UC3_UNIT_TEST {
 
     *  */
     public static void main(String[] args) {
+        BrokerList brokerList = new BrokerList();
+        System.out.println("_________________ TEST CONNECT__________________");
+
+
+
+
+
 
 
 // 1)
         // Creating views for tradeLog
         TableViewer tableViewer = new TableViewer();
         HistogramViewer histogramViewer = new HistogramViewer();
-        BrokerList brokerList = new BrokerList();
+
+
+
         TradeLog  tradeLog = new TradeLog(histogramViewer,tableViewer);
 // 2)
         // Creating usr selection
-        UsrSelection usrSelect1 = new UsrSelection("Fidelity", "BTC", "TestStrategy");
-        UsrSelection usrSelect2 = new UsrSelection("CharleSchwab", "BTC,ETH", "TestStrategy");
-        UsrSelection usrSelect3 = new UsrSelection("TD", "BTC,ETH", "TestStrategy");
+        UsrSelection usrSelect1 = new UsrSelection("Fidelity", "BTC,ETH", "TestStrategy");
+
 
         // Creating broker object
         BrokerFactory brokerFactory = new BrokerFactory();
         Broker fidelity = brokerFactory.create(usrSelect1);
-        Broker charlesSwchawb = brokerFactory.create(usrSelect2);
-        Broker tD = brokerFactory.create(usrSelect3);
+//        Broker charlesSwchawb = brokerFactory.create(usrSelect2);
+//        Broker tD = brokerFactory.create(usrSelect3);
 
         // Adding the brokers to broker list
         brokerList.addBroker(fidelity);
-        brokerList.addBroker(charlesSwchawb);
-        brokerList.addBroker(tD);
+//        brokerList.addBroker(charlesSwchawb);
+//        brokerList.addBroker(tD);
+        // INTERLUDE TEST: testing creating exhaustive list of coins to get info on
+        System.out.println("\n-----------------------------------EXHAUSTIVE COIN LIST INTERLUDE----------------------------------------\n");
+        System.out.println("-----------------------------------START----------------------------------------\n");
+//        String[] exaustiveCoinList = brokerList.getExhaustiveCoinList();
+        CoinsInfo coinDataBase = new CoinsInfo();
+        String[] exaustiveCoinList = brokerList.getExhaustiveCoinList();
+        coinDataBase.updateInfo(exaustiveCoinList);
+
+        System.out.println(coinDataBase.getCoinInfo("bitcoin").getPrice());
+
+        for (String s: exaustiveCoinList) System.out.println(s);
+
+
+
+
+        System.out.println("-----------------------------------END----------------------------------------");
+        System.out.println("\n-----------------------------------EXHAUSTIVE COIN LIST INTERLUDE----------------------------------------\n");
+
 
         for (Broker b : brokerList.getBrokerArrayList()) {
             System.out.println(b.getStrategy().getClass());
@@ -48,6 +74,7 @@ public class UC3_UNIT_TEST {
             System.out.println("Price: "+s.getPrice());
             System.out.println("Date: "+s.getDate());
         }
+
 
 
 

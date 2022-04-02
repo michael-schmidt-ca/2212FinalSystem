@@ -31,7 +31,7 @@ public class LoginUI extends JFrame implements ActionListener {
         frame.setTitle("<CoinTrader> Login");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(400, 200));
+        frame.setSize(new Dimension(800, 400));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
@@ -61,7 +61,7 @@ public class LoginUI extends JFrame implements ActionListener {
         resetBtn.addActionListener((ActionListener) new LoginUI());
     }
 
-    public static void main(String[] args){
+    public static void launchLogInUI(){
         setFrame();
         setElements();
         addElements();
@@ -78,11 +78,12 @@ public class LoginUI extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Enter your Username and Password");
             else {
                 if (LoginValidator.validate(User, Pass)) {
-                    JOptionPane.showMessageDialog(this, "LOGIN SUCCESS");
-                    //MainUI.main(null);
+                    //JOptionPane.showMessageDialog(this, "LOGIN SUCCESS");
+                    frame.dispose();
+                    MainSystem.loginCheck(true);
                 } else {
                     JOptionPane.showMessageDialog(this, "LOGIN FAILED \nProgram will now terminate");
-                    //System.exit(0);
+                    MainSystem.loginCheck(false);
                 }
             }
         }

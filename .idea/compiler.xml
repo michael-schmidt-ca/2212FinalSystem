@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="2212Part3" />
+        <module name="cryptoAnalyzer" />
         <module name="2212FinalSystem" />
       </profile>
     </annotationProcessing>
