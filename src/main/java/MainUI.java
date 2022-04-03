@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -174,8 +173,8 @@ public class MainUI extends JFrame implements ActionListener {
 
     public static void LaunchMainUI() {
         JFrame frame = MainUI.getInstance();
-        frame.setSize(1200, 600);
-        //frame.pack();
+        frame.setSize(900, 600);
+        frame.pack();
         frame.setVisible(true);
     }
 
@@ -195,16 +194,20 @@ public class MainUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, "please fill in cryptocoin list on line " + (count + 1) );
                     return;
                 }
-                String[] coinNames = coinObject.toString().split(",");
+                String coinNames = coinObject.toString();
                 Object strategyObject = dtm.getValueAt(count, 2);
                 if (strategyObject == null) {
                     JOptionPane.showMessageDialog(this, "please fill in strategy name on line " + (count + 1) );
                     return;
                 }
                 String strategyName = strategyObject.toString();
-                System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
+                //for each line in table make a usrSelectionObject
+                System.out.println(traderName + " " + coinNames + " " + strategyName);
+                MainSystem.addUserSelection(traderName,coinNames,strategyName);
             }
             stats.removeAll();
+            MainSystem.invokeStrategies();
+
             //DataVisualizationCreator creator = new DataVisualizationCreator();
             //creator.createCharts();
         } else if ("addTableRow".equals(command)) {
@@ -217,4 +220,3 @@ public class MainUI extends JFrame implements ActionListener {
     }
 
 }
-
