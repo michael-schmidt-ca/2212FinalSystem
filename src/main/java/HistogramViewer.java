@@ -9,6 +9,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HistogramViewer implements TradingObservers {
     /*Observer 1 = Histogram viewer (observer design pattern)*/
@@ -19,20 +21,20 @@ public class HistogramViewer implements TradingObservers {
     @Override
 
     public void update() {
-
         createBar();
     }
 
     private void createBar() {
-        System.out.println("In method createBar");
+        System.out.println("In class HistogramViewer method createBar");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//		Those are hard-coded values!!!!
-//		You will have to come up with a proper datastructure to populate the BarChart with live data!
-        dataset.setValue(6, "Trader-1", "Strategy-A");
-        dataset.setValue(5, "Trader-2", "Strategy-B");
-        dataset.setValue(0, "Trader-3", "Strategy-E");
-        dataset.setValue(1, "Trader-4", "Strategy-C");
-        dataset.setValue(10, "Trader-5", "Strategy-D");
+        //Object[][] realData = new Object[tradeLog.getTradeLog().size()][7];
+        ArrayList<StrategyResult> trades = tradeLog.getTradeLog(); // Container holding actual trades
+
+        for (int row=0; row < trades.size(); row++){
+            System.out.println(trades.get(row).getBroker().getName());
+            System.out.println(trades.get(row).getStrategy().getName());
+            //dataset.setValue(1, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
+        }
 
         CategoryPlot plot = new CategoryPlot();
         BarRenderer barrenderer1 = new BarRenderer();
@@ -57,5 +59,4 @@ public class HistogramViewer implements TradingObservers {
         chartPanel.setBackground(Color.white);
         MainUI.getInstance().updateStats(chartPanel);
     }
-
 }

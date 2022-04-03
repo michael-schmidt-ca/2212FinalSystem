@@ -202,7 +202,7 @@ public class MainUI extends JFrame implements ActionListener {
                 }
                 String strategyName = strategyObject.toString();
                 //for each line in table make a usrSelectionObject
-                System.out.println(traderName + " " + coinNames + " " + strategyName);
+                //System.out.println(traderName + " " + coinNames + " " + strategyName);
                 MainSystem.addUserSelection(traderName,coinNames,strategyName);
             }
             stats.removeAll();

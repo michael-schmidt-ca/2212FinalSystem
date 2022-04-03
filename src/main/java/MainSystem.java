@@ -25,7 +25,6 @@ public class MainSystem {
         }
     }
 
-
     public static void addUserSelection(String name, String coins, String strategy){
         UsrSelection newSelection = new UsrSelection(name,coins,strategy);
         //create broker factory
@@ -40,12 +39,12 @@ public class MainSystem {
     // Creating method for attaching observers not sure if this is right?
     public static void invokeStrategies(){
 
+        System.out.println("In method invokeStrategies");
         tradeLog.attach(histogram);
         tradeLog.attach(table);
         brokerList.trade(tradeLog);
 
-        System.out.println("In method invokeStrategies");
+
 
     }
-
 }

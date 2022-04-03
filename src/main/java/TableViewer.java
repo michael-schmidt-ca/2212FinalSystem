@@ -16,19 +16,18 @@ public class TableViewer implements TradingObservers {
     }
 
     private void createTableOutput() {
-        System.out.println("In method createTableOutput");
+        //System.out.println("In method createTableOutput");
         // Dummy dates for demo purposes. These should come from selection menu
         Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
 
         Object[][] data = toArray(); // SHOULD HAVE ACTUAL DATA
         for (Object[] o : data){ // test to see if its printing
+            //System.out.println("================");
             for (Object s : o){
-                System.out.println(s);
+                //System.out.println(o);
+                //System.out.println(s);
             }
         }
-        System.out.println("Eeeeeeee");
-        System.out.println();
-
 
         JTable table = new JTable(data, columnNames);
         //table.setPreferredSize(new Dimension(600, 300));
@@ -39,8 +38,6 @@ public class TableViewer implements TradingObservers {
                 TitledBorder.CENTER,
                 TitledBorder.TOP));
 
-
-
         scrollPane.setPreferredSize(new Dimension(800, 300));
         table.setFillsViewportHeight(true);
 
@@ -49,7 +46,7 @@ public class TableViewer implements TradingObservers {
     private Object[][] toArray(){
         // Create a 2d array to store data in size of rows is num of trades, and each trade has 7 attributes ie the columns
         Object[][] realData = new Object[tradeLog.getTradeLog().size()][7];
-        ArrayList<StrategyResult> trades = tradeLog.getTradeLog(); // Container holding actuall trades
+        ArrayList<StrategyResult> trades = tradeLog.getTradeLog(); // Container holding actual trades
         for (int row =0; row<trades.size(); row++){ // cycling through trades
             for (int column = 0; column < 7; column++){
                 switch (column){
