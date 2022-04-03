@@ -2,6 +2,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class LoginUI extends JFrame implements ActionListener {
     private static JPanel panel = new JPanel();
@@ -31,7 +32,7 @@ public class LoginUI extends JFrame implements ActionListener {
         frame.setTitle("<CoinTrader> Login");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(800, 400));
+        frame.setSize(new Dimension(450, 300));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
@@ -77,13 +78,17 @@ public class LoginUI extends JFrame implements ActionListener {
             if(User.isEmpty() && Pass.isEmpty())
                 JOptionPane.showMessageDialog(this, "Enter your Username and Password");
             else {
-                if (LoginValidator.validate(User, Pass)) {
-                    //JOptionPane.showMessageDialog(this, "LOGIN SUCCESS");
-                    frame.dispose();
-                    MainSystem.loginCheck(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "LOGIN FAILED \nProgram will now terminate");
-                    MainSystem.loginCheck(false);
+                try {
+                    if (LoginValidator.validate(User, Pass)) {
+                        //JOptionPane.showMessageDialog(this, "LOGIN SUCCESS");
+                        frame.dispose();
+                        MainSystem.loginCheck(true);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "LOGIN FAILED \nProgram will now terminate");
+                        MainSystem.loginCheck(false);
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
