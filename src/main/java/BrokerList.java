@@ -6,7 +6,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 /*BrokerList = Controller (Observer design pattern)*/
-public class BrokerList {
+public class BrokerList implements PerformTrades {
 
     private ArrayList<Broker> brokerArrayList = new ArrayList();
     private ArrayList<String> exhaustiveCoinList = new ArrayList();

@@ -7,6 +7,5 @@ public class StrategyFactory {
             case "ValueInvesting": return new StrategyValueInvesting();
         }
         return null; // THIS SHOULD BE AN ERROR MESSAGE if no strategy
-
     }
 }

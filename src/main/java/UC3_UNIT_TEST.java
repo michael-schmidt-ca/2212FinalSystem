@@ -64,7 +64,7 @@ public class UC3_UNIT_TEST {
         }
 //3
         brokerList.trade(tradeLog);
-        for (StrategyResult s : tradeLog.getTrades()){
+        for (StrategyResult s : tradeLog.getTradeLog()){
             System.out.println("------------------------ NEW TRADE --------------------------------------");
             System.out.println("Broker Name: "+s.getBroker().getName());
             System.out.println("Strategy used: "+s.getStrategy().getName());

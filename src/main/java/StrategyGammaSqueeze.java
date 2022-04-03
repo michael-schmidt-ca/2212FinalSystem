@@ -1,6 +1,11 @@
 public class StrategyGammaSqueeze implements Strategy{
 
-    // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
+    /*
+    * In: dogecoin and tether
+    * if the price dogecoin is more than 18 cents and if tether is more than 1 dollar:
+    *    Output: Sell 300 dogecoins
+    * else:
+    *   Output: Sell 100 Tether coins */
     private String name = "GammaSqueeze";
     @Override
     public StrategyResult calcStrategy(Broker b, CoinsInfo coinDatabase) {
@@ -23,11 +28,11 @@ public class StrategyGammaSqueeze implements Strategy{
                     && coinBPrice<1.0)
                 return new
                         StrategyResult(300,
-                        "dogeCoin", "Sell",
+                        "DogeCoin", "Sell",
                         java.time.LocalDate.now(),coinAPrice
                         ,b, b.getStrategy());
 
-            else return new StrategyResult(100000, "ETH", "Sell", java.time.LocalDate.now(),coinBPrice,b, b.getStrategy());
+            else return new StrategyResult(100, "Tether", "Sell", java.time.LocalDate.now(),coinBPrice,b, b.getStrategy());
         }
 
     }
@@ -40,11 +45,6 @@ public class StrategyGammaSqueeze implements Strategy{
         }
         return -1;
     }
-    /*METHOD GETS THE COIN In the list-
-    BIG ASSUMPTION THAT COIN PRICE AT SAME INDEx AS THE COIN NAME e.g.
-    CoinList = {"BTC", "ETH"},coinPriceList = {60000.84,3000.32} where coinPriceList[0]= is the price of BTC AND coinPriceList[1] = price of ETH
-    */
-
     public String getName(){
     return name;
     }

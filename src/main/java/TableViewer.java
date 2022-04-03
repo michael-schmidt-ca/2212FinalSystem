@@ -48,8 +48,8 @@ public class TableViewer implements TradingObservers {
     }
     private Object[][] toArray(){
         // Create a 2d array to store data in size of rows is num of trades, and each trade has 7 attributes ie the columns
-        Object[][] realData = new Object[tradeLog.getTrades().size()][7];
-        ArrayList<StrategyResult> trades = tradeLog.getTrades(); // Container holding actuall trades
+        Object[][] realData = new Object[tradeLog.getTradeLog().size()][7];
+        ArrayList<StrategyResult> trades = tradeLog.getTradeLog(); // Container holding actuall trades
         for (int row =0; row<trades.size(); row++){ // cycling through trades
             for (int column = 0; column < 7; column++){
                 switch (column){

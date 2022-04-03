@@ -3,14 +3,14 @@ import java.util.Observer;
 /*TradeLog = ConcreteSubject (Observer design pattern)
 * */
 
-public class TradeLog {
+public class TradeLog implements DisplayInfo{
 
 
     private ArrayList<TradingObservers> observers = new ArrayList<>();
     private ArrayList<StrategyResult> trades = new ArrayList<>();
 
 
-    public ArrayList<StrategyResult> getTrades() {
+    public ArrayList<StrategyResult> getTradeLog() {
         return trades;
     }
     public StrategyResult getTrade(String broker, String date){
