@@ -40,10 +40,10 @@ public class CoinsInfo {
         CoinsInfo bruh = new CoinsInfo();
 
 
-        String [] newList = {"bitcoin","ethereum"};
+        String [] newList = {"bitcoin","ETH"};
         bruh.updateInfo(newList);
         System.out.println(bruh);
-        System.out.println(bruh.getCoinInfo("ethereum").getPrice());
+        System.out.println(bruh.getCoinInfo("ETH").getPrice());
 
     }
 
