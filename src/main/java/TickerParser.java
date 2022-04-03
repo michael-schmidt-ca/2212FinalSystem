@@ -3,7 +3,8 @@ public class TickerParser { // THIS CLASS I IN CHARGE OF CONVERTING TICKER TO AC
     public String getCoinName(String ticker){
         switch (ticker){
             case "BTC": return "bitcoin";
-            case "ETH": return "ethereum"
+            case "ETH": return "ethereum";
+
         }
     }
 }
