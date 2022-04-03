@@ -120,7 +120,7 @@ public class MainUI extends JFrame implements ActionListener {
                 TitledBorder.CENTER, TitledBorder.TOP));
         Vector<String> strategyNames = new Vector<String>();
         strategyNames.add("None");
-        strategyNames.add("Strategy-A");
+        strategyNames.add("TestStrategy");
         strategyNames.add("Strategy-B");
         strategyNames.add("Strategy-C");
         strategyNames.add("Strategy-D");

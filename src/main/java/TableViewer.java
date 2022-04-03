@@ -20,9 +20,8 @@ public class TableViewer implements TradingObservers {
         // Dummy dates for demo purposes. These should come from selection menu
         Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
 
-
         Object[][] data = toArray(); // SHOULD HAVE ACTUAL DATA
-        for (Object[] o : data){
+        for (Object[] o : data){ // test to see if its printing
             for (Object s : o){
                 System.out.println(s);
             }

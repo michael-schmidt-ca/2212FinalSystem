@@ -36,17 +36,16 @@ public class MainSystem {
         brokerList.addBroker(newBroker);
         //System.out.println(brokerList.getBrokerArrayList().get(0).getName()); working
     }
+
     // Creating method for attaching observers not sure if this is right?
-    public static void attachObservers(){
+    public static void invokeStrategies(){
+
         tradeLog.attach(histogram);
         tradeLog.attach(table);
+        brokerList.trade(tradeLog);
 
-    }
-
-    public static void invokeStrategies(){
         System.out.println("In method invokeStrategies");
-        histogram.update();
-        table.update();
+
     }
 
 }

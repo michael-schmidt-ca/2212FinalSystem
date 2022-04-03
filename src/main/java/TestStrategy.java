@@ -22,8 +22,7 @@ public class TestStrategy implements Strategy{
 //                Double coinBPrice = cInfo.getCoinInfo("ethereum").getPrice();\
                 double coinAPrice = coinDataBase.getCoinInfo("bitcoin").getPrice();
                 double coinBPrice = coinDataBase.getCoinInfo("ethereum").getPrice();
-//                double coinAPrice = 2000000000.0;
-//                double coinBPrice =2.0;
+
 
                 if (coinAPrice>46188.00
                         && coinBPrice<3446.88)
