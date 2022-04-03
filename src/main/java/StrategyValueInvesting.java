@@ -1,9 +1,9 @@
-public class TestStrategy implements Strategy{
+public class StrategyValueInvesting implements Strategy{
 
 
 
         // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
-        private final String name ="TestStrategy";
+        private final String name ="ValueInvesting";
     @Override
         public StrategyResult calcStrategy(Broker b, CoinsInfo coinDataBase) {
 

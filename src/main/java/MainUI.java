@@ -120,10 +120,10 @@ public class MainUI extends JFrame implements ActionListener {
                 TitledBorder.CENTER, TitledBorder.TOP));
         Vector<String> strategyNames = new Vector<String>();
         strategyNames.add("None");
-        strategyNames.add("TestStrategy");
-        strategyNames.add("Strategy-B");
-        strategyNames.add("Strategy-C");
-        strategyNames.add("Strategy-D");
+        strategyNames.add("ValueInvesting");
+        strategyNames.add("GammaSqueeze");
+        strategyNames.add("MomentumInvesting");
+        strategyNames.add("FactorInvesting");
         TableColumn strategyColumn = table.getColumnModel().getColumn(2);
         JComboBox comboBox = new JComboBox(strategyNames);
         strategyColumn.setCellEditor(new DefaultCellEditor(comboBox));

@@ -1,4 +1,4 @@
-public class GammaSqueeze implements Strategy{
+public class StrategyGammaSqueeze implements Strategy{
 
     // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
     private String name = "GammaSqueeze";
@@ -8,26 +8,26 @@ public class GammaSqueeze implements Strategy{
         String[] coinList = b.getCryptoTickerList();
 
 
-        if (coinIndex("BTC", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
-                || coinIndex("ETH",coinList)==-1){
+        if (coinIndex("dogecoin", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
+                || coinIndex("tether",coinList)==-1){
             System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
         return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),null,b, b.getStrategy());
         }
 
         else{
             // Initialise coin objects
-            Double coinAPrice = cInfo.getCoinInfo("Bitcoin").getPrice();
-           Double coinBPrice = cInfo.getCoinInfo("ethereum").getPrice();
+            Double coinAPrice = cInfo.getCoinInfo("dogecoin").getPrice();
+           Double coinBPrice = cInfo.getCoinInfo("tether").getPrice();
 
-            if (coinAPrice>60000
-                    && coinBPrice<4000)
+            if (coinAPrice>0.18
+                    && coinBPrice<1.0)
                 return new
-                        StrategyResult(1000000,
-                        "BTC", "Sell",
+                        StrategyResult(300,
+                        "dogeCoin", "Sell",
                         java.time.LocalDate.now(),coinAPrice
                         ,b, b.getStrategy());
 
-            else return new StrategyResult(1000000, "ETH", "Sell", java.time.LocalDate.now(),coinBPrice,b, b.getStrategy());
+            else return new StrategyResult(100000, "ETH", "Sell", java.time.LocalDate.now(),coinBPrice,b, b.getStrategy());
         }
 
     }
@@ -44,14 +44,7 @@ public class GammaSqueeze implements Strategy{
     BIG ASSUMPTION THAT COIN PRICE AT SAME INDEx AS THE COIN NAME e.g.
     CoinList = {"BTC", "ETH"},coinPriceList = {60000.84,3000.32} where coinPriceList[0]= is the price of BTC AND coinPriceList[1] = price of ETH
     */
-    private Double getCoinPrice(String name, String[] coinList, Double[] coinPriceList){
-        int coinIndex = coinIndex(name, coinList);
-        if (coinIndex == -1) {
-            System.out.println(" NOT ENOUGH INFO - need to do smt specific here I think");
-            return null;
-        }
-        else return coinPriceList[coinIndex];
-    }
+
     public String getName(){
     return name;
     }
