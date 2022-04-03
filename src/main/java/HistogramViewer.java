@@ -10,9 +10,14 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import java.awt.*;
 
-public class HistogramViewer implements Observer{
+public class HistogramViewer implements TradingObservers {
     /*Observer 1 = Histogram viewer (observer design pattern)*/
+    private TradeLog tradeLog;
+    HistogramViewer(TradeLog tradeLog){
+        this.tradeLog = tradeLog;
+    }
     @Override
+
     public void update() {
 
         createBar();

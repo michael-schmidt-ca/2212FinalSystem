@@ -13,12 +13,17 @@ public class UC3_UNIT_TEST {
 
 // 1)
         // Creating views for tradeLog
-        TableViewer tableViewer = new TableViewer();
-        HistogramViewer histogramViewer = new HistogramViewer();
+        TradeLog  tradeLog = new TradeLog();
+        tradeLog.attach((TradingObservers) new TableViewer(tradeLog));
+
+        HistogramViewer histogramViewer = new HistogramViewer(tradeLog);
 
 
 
-        TradeLog  tradeLog = new TradeLog(histogramViewer,tableViewer);
+
+
+
+
 // 2)
         // Creating usr selection
         UsrSelection usrSelect1 = new UsrSelection("Fidelity", "BTC,ETH", "TestStrategy");

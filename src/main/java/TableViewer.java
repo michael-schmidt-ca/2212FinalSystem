@@ -1,14 +1,18 @@
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class TableViewer implements Observer{
+public class TableViewer implements TradingObservers {
+
     /*Table viewer = Observer 2 (observer design pattern)*/
     @Override
     public void update() {
         createTableOutput();
+    }
+    private TradeLog tradeLog;
+    TableViewer(TradeLog tradeLog){
+        this.tradeLog = tradeLog;
     }
 
     private void createTableOutput() {
@@ -16,21 +20,15 @@ public class TableViewer implements Observer{
         // Dummy dates for demo purposes. These should come from selection menu
         Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
 
-        // Dummy data for demo purposes. These should come from actual fetcher
-        Object[][] data = {
-                {"Trader-1", "Strategy-A", "ETH", "Buy", "500", "150.3","13-January-2022"},
-                {"Trader-2", "Strategy-B", "BTC", "Sell", "200", "50.2","13-January-2022"},
-                {"Trader-3", "Strategy-C", "USDT", "Buy", "1000", "2.59","15-January-2022"},
-                {"Trader-1", "Strategy-A", "USDC", "Buy", "500", "150.3","16-January-2022"},
-                {"Trader-2", "Strategy-B", "ADA", "Sell", "200", "50.2","16-January-2022"},
-                {"Trader-3", "Strategy-C", "SOL", "Buy", "1000", "2.59","17-January-2022"},
-                {"Trader-1", "Strategy-A", "ONE", "Buy", "500", "150.3","17-January-2022"},
-                {"Trader-2", "Strategy-B", "MANA", "Sell", "200", "50.2","17-January-2022"},
-                {"Trader-3", "Strategy-C", "AVAX", "Buy", "1000", "2.59","19-January-2022"},
-                {"Trader-1", "Strategy-A", "LUNA", "Buy", "500", "150.3","19-January-2022"},
-                {"Trader-2", "Strategy-B", "FTM", "Sell", "200", "50.2","19-January-2022"},
-                {"Trader-3", "Strategy-C", "HNT", "Buy", "1000", "2.59","20-January-2022"}
-        };
+
+        Object[][] data = toArray(); // SHOULD HAVE ACTUAL DATA
+        for (Object[] o : data){
+            for (Object s : o){
+                System.out.println(s);
+            }
+        }
+        System.out.println("Eeeeeeee");
+        System.out.println();
 
 
         JTable table = new JTable(data, columnNames);
@@ -49,7 +47,7 @@ public class TableViewer implements Observer{
 
         MainUI.getInstance().updateStats(scrollPane);
     }
-    private Object[][] toArray(TradeLog tradeLog){
+    private Object[][] toArray(){
         // Create a 2d array to store data in size of rows is num of trades, and each trade has 7 attributes ie the columns
         Object[][] realData = new Object[tradeLog.getTrades().size()][7];
         ArrayList<StrategyResult> trades = tradeLog.getTrades(); // Container holding actuall trades
@@ -91,4 +89,6 @@ public class TableViewer implements Observer{
         }// end of row loop
     return realData;
     }
+
+
 }

@@ -13,5 +13,7 @@ public class TickerParser { // THIS CLASS I IN CHARGE OF CONVERTING TICKER TO AC
             }
         }
     }
+    // MIGHT NEED to create a method that goes the other way reverses it for when it gets put into table viewer and so on
+    //
 
 }

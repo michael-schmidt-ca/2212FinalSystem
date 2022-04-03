@@ -1,13 +1,17 @@
 public class MainSystem {
 
     static BrokerList brokerList = new BrokerList();
-    static HistogramViewer histogram = new HistogramViewer();
-    static TableViewer table = new TableViewer();
+    static TradeLog tradeLog= new TradeLog();
+
+    static HistogramViewer histogram = new HistogramViewer(tradeLog);
+    static TableViewer table = new TableViewer(tradeLog); // NEED TO ATTACH THESE TO THE VIEWER
 
     public static void main(String[] args) {
+
         boolean loginValid = false;
         //Display Login UI
         LoginUI.launchLogInUI();
+
     }
 
     //If login UI returns false exit system
@@ -21,6 +25,7 @@ public class MainSystem {
         }
     }
 
+
     public static void addUserSelection(String name, String coins, String strategy){
         UsrSelection newSelection = new UsrSelection(name,coins,strategy);
         //create broker factory
@@ -31,10 +36,17 @@ public class MainSystem {
         brokerList.addBroker(newBroker);
         //System.out.println(brokerList.getBrokerArrayList().get(0).getName()); working
     }
+    // Creating method for attaching observers not sure if this is right?
+    public static void attachObservers(){
+        tradeLog.attach(histogram);
+        tradeLog.attach(table);
+
+    }
 
     public static void invokeStrategies(){
         System.out.println("In method invokeStrategies");
         histogram.update();
         table.update();
     }
+
 }
