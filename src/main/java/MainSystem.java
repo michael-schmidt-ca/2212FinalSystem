@@ -21,7 +21,7 @@ public class MainSystem {
             MainUI.LaunchMainUI();
         }
         else{
-            System.exit(0);
+            //System.exit(0);
         }
     }
 }
