@@ -13,4 +13,5 @@ public class TickerParser { // THIS CLASS I IN CHARGE OF CONVERTING TICKER TO AC
             }
         }
     }
+
 }

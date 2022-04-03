@@ -11,11 +11,6 @@ public class UC3_UNIT_TEST {
         System.out.println("_________________ TEST CONNECT__________________");
 
 
-
-
-
-
-
 // 1)
         // Creating views for tradeLog
         TableViewer tableViewer = new TableViewer();
