@@ -32,7 +32,7 @@ public class LoginUI extends JFrame implements ActionListener {
         frame.setTitle("<CoinTrader> Login");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(400, 200));
+        frame.setSize(new Dimension(450, 300));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
