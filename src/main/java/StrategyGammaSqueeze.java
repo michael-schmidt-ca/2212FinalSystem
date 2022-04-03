@@ -16,8 +16,8 @@ public class StrategyGammaSqueeze implements Strategy{
 
         else{
             // Initialise coin objects
-            Double coinAPrice = cInfo.getCoinInfo("dogecoin").getPrice();
-           Double coinBPrice = cInfo.getCoinInfo("tether").getPrice();
+            double coinAPrice = cInfo.getCoinInfo("dogecoin").getPrice();
+           double  coinBPrice = cInfo.getCoinInfo("tether").getPrice();
 
             if (coinAPrice>0.18
                     && coinBPrice<1.0)
