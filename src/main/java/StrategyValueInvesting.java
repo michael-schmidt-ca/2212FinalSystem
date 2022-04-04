@@ -1,4 +1,4 @@
-public class StrategyValueInvesting implements Strategy{
+public class StrategyValueInvesting implements StrategyV1 {
 
 
 
