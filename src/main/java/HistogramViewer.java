@@ -30,11 +30,11 @@ public class HistogramViewer implements TradingObservers {
         //Object[][] realData = new Object[tradeLog.getTradeLog().size()][7];
         ArrayList<StrategyResult> trades = tradeLog.getTradeLog(); // Container holding actual trades
 
-        for (int row=0; row < trades.size(); row++){
-            System.out.println(trades.get(row).getBroker().getName());
-            System.out.println(trades.get(row).getStrategy().getName());
-            //dataset.setValue(1, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
-        }
+//        for (int row=0; row < trades.size(); row++){
+//            System.out.println(trades.get(row).getBroker().getName());
+//            System.out.println(trades.get(row).getStrategy().getName());
+//            //dataset.setValue(1, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
+//        }
 
         CategoryPlot plot = new CategoryPlot();
         BarRenderer barrenderer1 = new BarRenderer();

@@ -14,6 +14,7 @@ public class TestStrategy implements Strategy{
             StrategyResult testResult = new StrategyResult(1000, coinList[0],"Buy", LocalDate.now(),
                                                             coinDataBase.getCoinInfo(coinList[0]).getPrice(),
                                                             broker, this);
+
             return testResult;
         } else {
             StrategyResult testResult = new StrategyResult(0, coinList[0],"Buy", LocalDate.now(),

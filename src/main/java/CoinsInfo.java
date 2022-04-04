@@ -13,6 +13,10 @@ public class CoinsInfo {
         return coinsMap.get(coinName);
     }
 
+    public boolean checkValidCoin(String coin){
+        return CoinGeckoConnector.coinExists(coin);
+    }
+
     public boolean updateInfo(String[] names){
 
         try {
@@ -43,7 +47,7 @@ public class CoinsInfo {
         String [] newList = {"bitcoin","ethereum"};
         bruh.updateInfo(newList);
         System.out.println(bruh);
-        System.out.println(bruh.getCoinInfo("ethereum").getPrice());
+        System.out.println(bruh.getCoinInfo("eth").getPrice());
 
     }
 

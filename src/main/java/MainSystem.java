@@ -44,7 +44,5 @@ public class MainSystem {
         tradeLog.attach(table);
         brokerList.trade(tradeLog);
 
-
-
     }
 }

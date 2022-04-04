@@ -6,7 +6,7 @@
 import java.util.ArrayList;
 
 /*BrokerList = Controller (Observer design pattern)*/
-public class BrokerList implements PerformTrades {
+public class BrokerList{
 
     private ArrayList<Broker> brokerArrayList = new ArrayList();
     private String[] fullCoinList;
@@ -35,6 +35,8 @@ public class BrokerList implements PerformTrades {
 
     public boolean addBroker(Broker b) {
         boolean retValue = this.brokerArrayList.add(b);
+        System.out.println("ADDED A BROKER " + b.getName());
+        //throw new RuntimeException();
         genCoinList();
         return retValue;
     }
@@ -77,6 +79,7 @@ public class BrokerList implements PerformTrades {
         coinDataBase.updateInfo(fullCoinList);
         for (int i = 0; i < brokerArrayList.size(); i ++){
             StrategyResult result = brokerArrayList.get(i).determineTrade(coinDataBase);
+            System.out.println("Added trade for broker #" + brokerArrayList.get(i).getName());
             tradeLog.addTrade(result);
         }
 //        for (Broker broker: brokerArrayList){

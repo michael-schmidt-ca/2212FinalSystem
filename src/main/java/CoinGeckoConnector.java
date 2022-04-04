@@ -13,6 +13,33 @@ import org.json.simple.parser.ParseException;
 public class CoinGeckoConnector {
 
 
+    public static boolean coinExists(String coinName){
+        try {
+            // Creates a URL object with proper strings
+            URL url = new URL
+                    ("https://api.coingecko.com/api/v3/simple/price?ids=" + coinName
+                            + "&vs_currencies=usd");
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");// Check server status
+            connection.connect(); // Connect to server
+
+            String infoString = "";
+            Scanner sc = new Scanner(url.openStream());
+
+            while (sc.hasNext()) {
+                infoString = infoString + sc.nextLine();
+            }
+            sc.close();
+            if (infoString.equals("{}")){
+                return false;
+            }
+            return true;
+        } catch (Exception a) {
+            System.out.println(a);
+        }
+        return false;
+    }
 
     public static HashMap<String, Coin> basicCall(String[] coinsList, String currencyType, HashMap<String, Coin> curMap) {
         try {
@@ -33,7 +60,6 @@ public class CoinGeckoConnector {
             connection.setRequestMethod("GET");// Check server status
             connection.connect(); // Connect to server
 
-            // Are you reading here? i dont get the code here
             String infoString = "";
             Scanner sc = new Scanner(url.openStream());
 

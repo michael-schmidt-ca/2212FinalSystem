@@ -1,3 +1,3 @@
-public interface PerformTrades {
-    void trade(TradeLog log);
-}
+//public interface PerformTrades {
+//    void trade(TradeLog log);
+//}
