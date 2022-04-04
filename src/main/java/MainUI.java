@@ -177,7 +177,7 @@ public class MainUI extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(null, "Unexpected Error\n Coin input is invalid");
     }
     public static void catchDoubleBroker(){
-        JOptionPane.showMessageDialog(null, "Unexpected Error\n Coin input is invalid");
+        JOptionPane.showMessageDialog(null, "Unexpected Error\n Double Broker Detected");
     }
 
     // PRESING TRADE BUTTON
