@@ -5,11 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -52,6 +48,8 @@ public class MainUI extends JFrame implements ActionListener {
     private String selectedStrategy = "";
     private DefaultTableModel dtm;
     private JTable table;
+
+    private ArrayList<String> brokerNames = new ArrayList();
 
     public static MainUI getInstance() {
         if (instance == null)
@@ -105,8 +103,6 @@ public class MainUI extends JFrame implements ActionListener {
         JButton trade = new JButton("Perform Trade");
         trade.setActionCommand("refresh");
         trade.addActionListener(this);
-
-
 
         JPanel south = new JPanel();
 
@@ -183,6 +179,11 @@ public class MainUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         if ("refresh".equals(command)) {
+            //rest all the information
+            MainSystem.clearBrokerList();
+            //Arrays.fill(coinNames, null);
+            brokerNames.clear();
+
             for (int count = 0; count < dtm.getRowCount(); count++){
                 Object traderObject = dtm.getValueAt(count, 0);
                 if (traderObject == null) {
@@ -195,16 +196,25 @@ public class MainUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, "please fill in cryptocoin list on line " + (count + 1) );
                     return;
                 }
-                String coinNames = coinObject.toString();
+                String[] coinNames = coinObject.toString().split(",");
                 Object strategyObject = dtm.getValueAt(count, 2);
                 if (strategyObject == null) {
                     JOptionPane.showMessageDialog(this, "please fill in strategy name on line " + (count + 1) );
                     return;
                 }
                 String strategyName = strategyObject.toString();
-                //for each line in table make a usrSelectionObject
-                //System.out.println(traderName + " " + coinNames + " " + strategyName);
-                MainSystem.addUserSelection(traderName,coinNames,strategyName); // connects the user selections to the back end
+
+                //trim each string in the list
+                for(int j=0; j<coinNames.length; j++){
+                    coinNames[j] = coinNames[j].toLowerCase(Locale.ROOT).trim();
+                }
+
+                //check to see if the broker has already been added
+                if(!brokerNames.contains(traderName)){
+                    //for each line in table make a usrSelectionObject
+                    MainSystem.addUserSelection(traderName,coinNames,strategyName); // connects the user selections to the back end
+                    brokerNames.add(traderName);
+                }
             }
             stats.removeAll();
             MainSystem.invokeStrategies(); // Attaches the visualisers

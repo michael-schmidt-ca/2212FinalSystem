@@ -3,14 +3,13 @@ public class UsrSelection {
      These are the strings entered by user when choosing what he wants to create-
     This is then used and converted to strategies and broker using the appropriate factories */
     private String name;
-    private String tckrLst;
+    private String[] tckrLst;
     private String strategy;
 
-    UsrSelection(String name, String tckrLst, String strategy){
+    UsrSelection(String name, String[] tckrLst, String strategy){
         setName(name);
         setTckrLst(tckrLst);
         setStrategy(strategy);
-
     }
 
     // Generic getter and setter
@@ -19,7 +18,7 @@ public class UsrSelection {
     public void setName(String n){
         name =n;
     }
-    public void setTckrLst(String tLst){
+    public void setTckrLst(String[] tLst){
         tckrLst = tLst;
     }
 
@@ -29,7 +28,7 @@ public class UsrSelection {
     public String getName(){
         return name;
     }
-    public String getTckrLst(){
+    public String[] getTckrLst(){
         return tckrLst;
     }
 
