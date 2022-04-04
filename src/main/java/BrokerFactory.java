@@ -5,8 +5,6 @@ public class BrokerFactory {
                 retrieveName(usrSelection),
                 retrieveTckrLst(usrSelection),
                 retrieveStrategy(usrSelection));
-
-
     }
 
     private String retrieveName(UsrSelection usrSelection){
@@ -31,7 +29,5 @@ public class BrokerFactory {
     private Strategy retrieveStrategy(UsrSelection usrSelection){
         StrategyFactory factory = new StrategyFactory();
         return factory.create(usrSelection.getStrategy());
-
-
     }
 }

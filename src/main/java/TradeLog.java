@@ -13,6 +13,7 @@ public class TradeLog implements DisplayInfo{
     public ArrayList<StrategyResult> getTradeLog() {
         return trades;
     }
+
     public StrategyResult getTrade(String broker, String date){
 
         for (StrategyResult trade: trades){
@@ -20,15 +21,17 @@ public class TradeLog implements DisplayInfo{
         }
         return null;
     }
+
     public void notifyObservers(){
         for (TradingObservers o : observers){
             o.update();
         }
     }
-    public boolean addTrade(StrategyResult s){return trades.add(s);}
+    public boolean addTrade(StrategyResult s){
+        return trades.add(s);
+    }
     public void attach(TradingObservers observer){
         observers.add(observer);
     }
-
 
 }

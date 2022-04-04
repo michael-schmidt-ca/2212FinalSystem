@@ -11,6 +11,8 @@ public class MainSystem {
         boolean loginValid = false;
         //Display Login UI
         LoginUI.launchLogInUI();
+        // Not sure where I should attach observers will try here
+        attachObservers();
 
     }
 
@@ -40,11 +42,13 @@ public class MainSystem {
     public static void invokeStrategies(){
 
         System.out.println("In method invokeStrategies");
-        tradeLog.attach(histogram);
-        tradeLog.attach(table);
+
         brokerList.trade(tradeLog);
 
-
-
+    }
+    public static void attachObservers(){
+        System.out.println("Attached viewers");
+        tradeLog.attach(histogram);
+        tradeLog.attach(table);
     }
 }

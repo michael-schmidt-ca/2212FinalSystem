@@ -1,3 +1,8 @@
+/**
+ * @author Satvir Uppal
+ * CS2212 - Intro to Software Engineering
+ * @purpose this class is the LoginUI window that initializes and generates the loginUI
+ */
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,11 +26,21 @@ public class LoginUI extends JFrame implements ActionListener {
 
     private static LoginUI instance;
 
+    /** GetInstance Method: this method will make the LoginUI the current instance.
+     * This is ane example of Singleton design patter
+     *
+     * @return the instance of the current window
+     */
     public static LoginUI getInstance() {
         if (instance == null)
             instance = new LoginUI();
         return instance;
     }
+
+    /**
+     * SetFrame method that initializes the frame and panel of the UI
+     * This method sets the dimensions and location of the window
+     */
     private static void setFrame(){
         panel.setLayout(null);
 
@@ -37,6 +52,11 @@ public class LoginUI extends JFrame implements ActionListener {
         frame.setVisible(true);
         frame.setResizable(false);
     }
+
+    /**
+     * SetElements method that sets the locations and size of the elements of the UI such as the
+     * username & password labels, text-enterable-fields, and buttons (login, show password, and reset)
+     */
     private static void setElements(){
         usernameLabel.setBounds(50, 8, 200, 20);
         username.setBounds(50, 25, 193, 28);
@@ -46,6 +66,11 @@ public class LoginUI extends JFrame implements ActionListener {
         resetBtn.setBounds(152, 120, 90, 25);
         showPass.setBounds(250, 80, 150, 25);
     }
+
+    /**
+     * addElements method that adds the elements on to the panel such that
+     *they can be interacted with and utilized
+     */
     private static void addElements(){
         panel.add(usernameLabel);
         panel.add(username);
@@ -56,12 +81,21 @@ public class LoginUI extends JFrame implements ActionListener {
         panel.add(showPass);
         setAction();
     }
+
+    /**
+     * setAction that will set the buttons (login, show password, and reset)
+     * this makes the buttons 'observers' so they are awaiting an action to commence their methods
+     */
     private static void setAction(){
         showPass.addActionListener((ActionListener) new LoginUI());
         loginBtn.addActionListener((ActionListener) new LoginUI());
         resetBtn.addActionListener((ActionListener) new LoginUI());
     }
 
+    /**
+     * LaunchLoginUI acts as a main method that is called by MainSystem.java to open and commence the program
+     * this method calls the helper methods above to initialize and create the UI
+     */
     public static void launchLogInUI(){
         setFrame();
         setElements();
@@ -69,9 +103,13 @@ public class LoginUI extends JFrame implements ActionListener {
         getInstance();
     }
 
+    /**
+     * ActionPerformed that is called only when an action such as a button check or click happens
+     * this is similar to an observer design pattern as it only commences a method when an action is performed
+     * @param e that is passed only when a button that is included on the LoginUI is pressed/ checked
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if(e.getSource() == loginBtn){
             String User = username.getText().toLowerCase();
             String Pass = String.valueOf(password.getPassword());
@@ -80,7 +118,6 @@ public class LoginUI extends JFrame implements ActionListener {
             else {
                 try {
                     if (LoginValidator.validate(User, Pass)) {
-                        //JOptionPane.showMessageDialog(this, "LOGIN SUCCESS");
                         frame.dispose();
                         MainSystem.loginCheck(true);
                     } else {

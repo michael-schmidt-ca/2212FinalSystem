@@ -177,7 +177,7 @@ public class MainUI extends JFrame implements ActionListener {
         frame.pack();
         frame.setVisible(true);
     }
-
+    // PRESING TRADE BUTTON
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
@@ -203,10 +203,10 @@ public class MainUI extends JFrame implements ActionListener {
                 String strategyName = strategyObject.toString();
                 //for each line in table make a usrSelectionObject
                 //System.out.println(traderName + " " + coinNames + " " + strategyName);
-                MainSystem.addUserSelection(traderName,coinNames,strategyName);
+                MainSystem.addUserSelection(traderName,coinNames,strategyName); // connects the user selections to the back end
             }
             stats.removeAll();
-            MainSystem.invokeStrategies();
+            MainSystem.invokeStrategies(); // Attaches the visualisers
 
             //DataVisualizationCreator creator = new DataVisualizationCreator();
             //creator.createCharts();
