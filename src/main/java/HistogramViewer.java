@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class HistogramViewer implements TradingObservers {
     /*Observer 1 = Histogram viewer (observer design pattern)*/
@@ -26,6 +27,7 @@ public class HistogramViewer implements TradingObservers {
 
     private void createBar() {
         System.out.println("In class HistogramViewer method createBar");
+
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         //Object[][] realData = new Object[tradeLog.getTradeLog().size()][7];
         ArrayList<StrategyResult> trades = tradeLog.getTradeLog(); // Container holding actual trades
@@ -34,8 +36,14 @@ public class HistogramViewer implements TradingObservers {
         for (int row=0; row < trades.size(); row++){
             System.out.println("Broker: "+trades.get(row).getBroker().getName());
             System.out.println("Strategy: "+trades.get(row).getStrategy().getName());
-//            dataset.setValue(10, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
-            dataset.addValue(10, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
+
+            //increment value in histogram
+            try{
+                dataset.incrementValue(1, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
+            } catch (Exception ex){ //if not present, add value to list at base value
+                dataset.addValue(1, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
+            }
+
         }
         System.out.println("=================================");
 
@@ -62,4 +70,7 @@ public class HistogramViewer implements TradingObservers {
         chartPanel.setBackground(Color.white);
         MainUI.getInstance().updateStats(chartPanel);
     }
+
+
+
 }

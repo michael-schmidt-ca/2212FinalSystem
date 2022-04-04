@@ -12,11 +12,19 @@ public class BrokerList{
     private String[] fullCoinList;
     private CoinsInfo coinDataBase = new CoinsInfo();
 
-
+    /**
+     * getter method for list of brokers
+     * @return an array list of all active brokers
+     */
     public ArrayList<Broker> getBrokerArrayList() {
         return this.brokerArrayList;
     }
 
+    /**
+     * getter method for specific broker
+     * @param brokerName string id of broker
+     * @return broker related to passed string
+     */
     public Broker getBroker(String brokerName) {
         for (int i = 0; i < brokerArrayList.size(); i ++){
             if (brokerArrayList.get(i).getName().equals(brokerName)){
@@ -27,20 +35,33 @@ public class BrokerList{
         return null;
     }
 
+    /**
+     * method to remove a specified broker from the list, also updates the coin list
+     * @param b broker object to remove
+     * @return whether the removal was succesful
+     */
     public boolean removeBroker(Broker b) {
         boolean retValue = this.brokerArrayList.remove(b);
         genCoinList();
         return retValue;
     }
 
+    /**
+     * method to insert a broker into the arraylist
+     * @param b broker to add
+     * @return boolean representation of addition success
+     */
     public boolean addBroker(Broker b) {
         boolean retValue = this.brokerArrayList.add(b);
         System.out.println("ADDED A BROKER " + b.getName());
-        //throw new RuntimeException();
         genCoinList();
         return retValue;
     }
 
+    /**
+     * method to update the full coin list.
+     * will loop through all brokers and determine
+     */
     private void genCoinList(){ //UPDATES THE FULL COIN LIST WHENEVER A CHANGE IS MADE TO THE BROKER LIST
         ArrayList<String> startList = new ArrayList<>(); //list of coins
         for (int i = 0; i < brokerArrayList.size(); i ++){ //loop through brokers

@@ -38,9 +38,11 @@ public class TestStrategy implements Strategy{
         }// end of loop
         return false;
     }
-    private String[] getRequiredCoins(){
+
+    public String[] getRequiredCoins(){
         return new String[]{strategyCoin1,strategyCoin2};
     }
+
     private boolean validateUsrCoins(String[] coinList){
         for (String coin: coinList){
             if (!(linearSearch(coin,getRequiredCoins()))|| coinList.length < getRequiredCoins().length) { // if coin not found or not enough coins
