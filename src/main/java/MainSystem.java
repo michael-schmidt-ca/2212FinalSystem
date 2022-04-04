@@ -10,7 +10,8 @@ public class MainSystem {
 
         boolean loginValid = false;
         //Display Login UI
-        LoginUI.launchLogInUI();
+        //LoginUI.launchLogInUI();
+        MainUI.LaunchMainUI();
         // Not sure where I should attach observers will try here
         attachObservers();
 
@@ -20,7 +21,7 @@ public class MainSystem {
     //Else start Main UI
     public static void loginCheck(Boolean valid){
         if(valid){
-            MainUI.LaunchMainUI();
+            //MainUI.LaunchMainUI();
         }
         else{
             //System.exit(0);
@@ -42,7 +43,6 @@ public class MainSystem {
     public static void invokeStrategies(){
 
         System.out.println("In method invokeStrategies");
-
         brokerList.trade(tradeLog);
 
     }
