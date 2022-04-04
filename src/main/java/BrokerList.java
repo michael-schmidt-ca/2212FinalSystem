@@ -57,7 +57,7 @@ public class BrokerList{
     }
 
     //does this edit a brokers coin list????
-    public void editCoinList(Broker b, String coinsEnteredToUI, UsrSelection originalSelectionObject) {
+    public void editCoinList(Broker b, String[] coinsEnteredToUI, UsrSelection originalSelectionObject) {
         BrokerFactory tempUpdater = new BrokerFactory();
         originalSelectionObject.setTckrLst(coinsEnteredToUI);
         String[] updatedList = tempUpdater.create(originalSelectionObject).getCryptoTickerList();

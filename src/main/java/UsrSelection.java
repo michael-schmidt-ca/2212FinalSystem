@@ -10,7 +10,6 @@ public class UsrSelection {
         setName(name);
         setTckrLst(tckrLst);
         setStrategy(strategy);
-
     }
 
     // Generic getter and setter

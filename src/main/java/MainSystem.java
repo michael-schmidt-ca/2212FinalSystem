@@ -28,7 +28,7 @@ public class MainSystem {
         }
     }
 
-    public static void addUserSelection(String name, String coins, String strategy){
+    public static void addUserSelection(String name, String[] coins, String strategy){
         UsrSelection newSelection = new UsrSelection(name,coins,strategy);
         //create broker factory
         BrokerFactory brokerFactory = new BrokerFactory();

@@ -49,8 +49,7 @@ public class MainUI extends JFrame implements ActionListener {
     private DefaultTableModel dtm;
     private JTable table;
 
-    private String[] coinsArray;
-    private String[] brokerArray;
+    private ArrayList<String> brokerNames = new ArrayList();
 
     public static MainUI getInstance() {
         if (instance == null)
@@ -64,13 +63,46 @@ public class MainUI extends JFrame implements ActionListener {
         // Set window title
         super("Crypto Trading Tool");
 
+        // Set top bar
+
+
         JPanel north = new JPanel();
+
+//		north.add(strategyList);
+
+        // Set bottom bar
+//		JLabel from = new JLabel("From");
+//		UtilDateModel dateModel = new UtilDateModel();
+//		Properties p = new Properties();
+//		p.put("text.today", "Today");
+//		p.put("text.month", "Month");
+//		p.put("text.year", "Year");
+//		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
+//		@SuppressWarnings("serial")
+//		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new AbstractFormatter() {
+//			private String datePatern = "dd/MM/yyyy";
+//
+//			private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePatern);
+//
+//			@Override
+//			public Object stringToValue(String text) throws ParseException {
+//				return dateFormatter.parseObject(text);
+//			}
+//
+//			@Override
+//			public String valueToString(Object value) throws ParseException {
+//				if (value != null) {
+//					Calendar cal = (Calendar) value;
+//					return dateFormatter.format(cal.getTime());
+//				}
+//
+//				return "";
+//			}
+//		});
 
         JButton trade = new JButton("Perform Trade");
         trade.setActionCommand("refresh");
         trade.addActionListener(this);
-
-
 
         JPanel south = new JPanel();
 
@@ -144,14 +176,12 @@ public class MainUI extends JFrame implements ActionListener {
     // PRESING TRADE BUTTON
     @Override
     public void actionPerformed(ActionEvent e) {
-
         String command = e.getActionCommand();
         if ("refresh".equals(command)) {
-            //reset values
-            //when trades button is pressed reset the brokerList object
+            //rest all the information
             MainSystem.clearBrokerList();
-            Arrays.fill(coinsArray, null);
-            Arrays.fill(brokerArray, null);
+            //Arrays.fill(coinNames, null);
+            brokerNames.clear();
 
             for (int count = 0; count < dtm.getRowCount(); count++){
                 Object traderObject = dtm.getValueAt(count, 0);
@@ -165,30 +195,25 @@ public class MainUI extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, "please fill in cryptocoin list on line " + (count + 1) );
                     return;
                 }
-                String coinNames = coinObject.toString();
+                String[] coinNames = coinObject.toString().split(",");
                 Object strategyObject = dtm.getValueAt(count, 2);
                 if (strategyObject == null) {
                     JOptionPane.showMessageDialog(this, "please fill in strategy name on line " + (count + 1) );
                     return;
                 }
                 String strategyName = strategyObject.toString();
-                //for each line in table make a usrSelectionObject
-                //System.out.println(traderName + " " + coinNames + " " + strategyName);
 
-                //see if the name of the broker has been added before... if it has... don't add it and tell the user.
-
-                MainSystem.addUserSelection(traderName,coinNames,strategyName); // connects the user selections to the back end
-
-                //check to see if the coins entered are valid... if not tell the user which row is invalid
-                coinsArray = coinNames.split(",");
-                coinInfo = Arrays.asList(coinsArray);
-                for (int j=0; j<coinInfo.length; j++){
-                    coinInfo[j] = coinInfo[j].toLowerCase(Locale.ROOT).trim();
+                //trim each string in the list
+                for(int j=0; j<coinNames.length; j++){
+                    coinNames[j] = coinNames[j].toLowerCase(Locale.ROOT).trim();
                 }
-//                if(!coinList.contains(input){
-//                    JOptionPane.showMessageDialog(this,"Wrong name");
-//                }
-                JOptionPane.showMessageDialogue("Wrong name");
+
+                //check to see if the broker has already been added
+                if(!brokerNames.contains(traderName)){
+                    //for each line in table make a usrSelectionObject
+                    MainSystem.addUserSelection(traderName,coinNames,strategyName); // connects the user selections to the back end
+                    brokerNames.add(traderName);
+                }
             }
             stats.removeAll();
             MainSystem.invokeStrategies(); // Attaches the visualisers
