@@ -1,52 +1,62 @@
-//public class StrategyFactorInvesting implements StrategyV1 {
-//
-//
-//        // THIS Strategy is gonna compare prices of bitcoin and eth to decide what its gonna trade
-//        private String name = "FactorInvesting";
-//        @Override
-//        public StrategyResult calcStrategy(Broker b, CoinsInfo coinDatabase) {
-//            CoinsInfo cInfo = new CoinsInfo();
-//            String[] coinList = b.getCryptoTickerList();
-//
-//
-//            if (coinIndex("xrp", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
-//                    || coinIndex("avalanche",coinList)==-1){
-//                System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
-//                return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),null,b, b.getStrategy());
-//            }
-//
-//            else{
-//                // Initialise coin objects
-//                Double coinAPrice = cInfo.getCoinInfo("xrp").getPrice();
-//                Double coinBPrice = cInfo.getCoinInfo("avalanche").getPrice();
-//
-//                if (coinAPrice>0.8
-//                        && coinBPrice<100.0)
-//                    return new
-//                            StrategyResult(300,
-//                            "XRP", "Sell",
-//                            java.time.LocalDate.now(),coinAPrice
-//                            ,b, b.getStrategy());
-//
-//                else return new StrategyResult(100, "AVAX", "Sell", java.time.LocalDate.now(),coinBPrice,b, b.getStrategy());
-//            }
-//
-//        }
-//        // METHOD RETURNS its index in the list if present and -1 if not in list
-//        private int coinIndex(String name, String[] list){
-//            int count = 0;
-//            for (String n : list){
-//                count ++;
-//                if (n.equals(name)) return count;
-//            }
-//            return -1;
-//        }
-//
-//
-//        public String getName(){
-//            return name;
-//        }
-//
-//
-//
-//}
+
+import java.time.LocalDate;
+import java.util.Locale;
+
+public class StrategyFactorInvesting implements Strategy{
+
+    private final String stratName = "FACTORSTRAT";
+    private final String strategyCoin1 = "bitcoin";
+    private final String strategyCoin2 = "dogecoin";
+    @Override
+    public String getName() {
+        return stratName;
+    }
+
+    @Override
+    public StrategyResult determineExecution(String[] coinList, CoinsInfo coinDataBase, Broker broker) {
+
+
+        // if the required coins are not present the strategy will return a
+        if (!validateUsrCoins(coinList)) {
+            MainUI.catchCoinError();
+            return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
+        }
+
+        if (coinDataBase.getCoinInfo(coinList[0]).getPrice()/40 > coinDataBase.getCoinInfo(coinList[1]).getPrice()){
+            StrategyResult testResult = new StrategyResult(10, coinList[0],"Sell", LocalDate.now(),
+                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+                    broker, this);
+
+            return testResult;
+        } else {
+            StrategyResult testResult = new StrategyResult(400, coinList[1],"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+                    broker, this);
+            return testResult;
+        }
+
+    }
+    private boolean linearSearch(String targetCoin, String[] coins){ // simple linear search algo to find coin
+        for (String coin: coins){
+            if (targetCoin.toLowerCase(Locale.ROOT).equals(coin))
+                return true;
+        }// end of loop
+        return false;
+    }
+
+    public String[] getRequiredCoins(){
+        return new String[]{strategyCoin1,strategyCoin2};
+    }
+
+    private boolean validateUsrCoins(String[] coinList){
+        for (String coin: coinList){
+            if (!(linearSearch(coin,getRequiredCoins()))|| coinList.length < getRequiredCoins().length) { // if coin not found or not enough coins
+                System.out.println("WRONG COIN INFO");
+                return false;
+            }
+            // if the coin is not found in the linear search return false
+        }
+        return true; // Both coins have been found
+    }
+
+}

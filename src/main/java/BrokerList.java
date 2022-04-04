@@ -84,6 +84,7 @@ public class BrokerList{
     public void trade(TradeLog tradeLog){
 
         coinDataBase.updateInfo(fullCoinList);
+
         for (int i = 0; i < brokerArrayList.size(); i ++){
             StrategyResult result = brokerArrayList.get(i).determineTrade(coinDataBase);
             System.out.println("Added trade for broker #" + brokerArrayList.get(i).getName());

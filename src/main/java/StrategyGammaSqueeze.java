@@ -1,52 +1,62 @@
-//public class StrategyGammaSqueeze implements StrategyV1 {
-//
-//    /*
-//    * In: dogecoin and tether
-//    * if the price dogecoin is more than 18 cents and if tether is more than 1 dollar:
-//    *    Output: Sell 300 dogecoins
-//    * else:
-//    *   Output: Sell 100 Tether coins */
-//    private String name = "GammaSqueeze";
-//    @Override
-//    public StrategyResult calcStrategy(Broker b, CoinsInfo coinDatabase) {
-//        CoinsInfo cInfo = new CoinsInfo();
-//        String[] coinList = b.getCryptoTickerList();
-//
-//
-//        if (coinIndex("dogecoin", coinList)==-1// CHECK IF COINS NOT INTERESTED LIST
-//                || coinIndex("tether",coinList)==-1){
-//            System.out.println("WRONG COINS"); // NEED TO HANDLE THIS I think it creates A GGAILED STRATEGY ROW OR SMT still creates OBJECT I think
-//        return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),null,b, b.getStrategy());
-//        }
-//
-//        else{
-//            // Initialise coin objects
-//            double coinAPrice = cInfo.getCoinInfo("dogecoin").getPrice();
-//           double  coinBPrice = cInfo.getCoinInfo("tether").getPrice();
-//
-//            if (coinAPrice>0.18
-//                    && coinBPrice<1.0)
-//                return new
-//                        StrategyResult(300,
-//                        "DogeCoin", "Sell",
-//                        java.time.LocalDate.now(),coinAPrice
-//                        ,b, b.getStrategy());
-//
-//            else return new StrategyResult(100, "Tether", "Sell", java.time.LocalDate.now(),coinBPrice,b, b.getStrategy());
-//        }
-//
-//    }
-//    // METHOD RETURNS its index in the list if present and -1 if not in list
-//    private int coinIndex(String name, String[] list){
-//        int count = 0;
-//        for (String n : list){
-//            count ++;
-//            if (n.equals(name)) return count;
-//        }
-//        return -1;
-//    }
-//    public String getName(){
-//    return name;
-//    }
-//
-//}
+
+import java.time.LocalDate;
+import java.util.Locale;
+
+public class StrategyGammaSqueeze implements Strategy{
+
+    private final String stratName = "GAMMASTRAT";
+    private final String strategyCoin1 = "ethereum";
+    private final String strategyCoin2 = "bitcoin";
+    @Override
+    public String getName() {
+        return stratName;
+    }
+
+    @Override
+    public StrategyResult determineExecution(String[] coinList, CoinsInfo coinDataBase, Broker broker) {
+
+
+        // if the required coins are not present the strategy will return a
+        if (!validateUsrCoins(coinList)) {
+            MainUI.catchCoinError();
+            return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
+        }
+
+        if (coinDataBase.getCoinInfo(coinList[0]).getPrice() > 45000){
+            StrategyResult testResult = new StrategyResult(1000, coinList[0],"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+                    broker, this);
+
+            return testResult;
+        } else {
+            StrategyResult testResult = new StrategyResult(0, coinList[0],"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+                    broker, this);
+            return testResult;
+        }
+
+    }
+    private boolean linearSearch(String targetCoin, String[] coins){ // simple linear search algo to find coin
+        for (String coin: coins){
+            if (targetCoin.toLowerCase(Locale.ROOT).equals(coin))
+                return true;
+        }// end of loop
+        return false;
+    }
+
+    public String[] getRequiredCoins(){
+        return new String[]{strategyCoin1,strategyCoin2};
+    }
+
+    private boolean validateUsrCoins(String[] coinList){
+        for (String coin: coinList){
+            if (!(linearSearch(coin,getRequiredCoins()))|| coinList.length < getRequiredCoins().length) { // if coin not found or not enough coins
+                System.out.println("WRONG COIN INFO");
+                return false;
+            }
+            // if the coin is not found in the linear search return false
+        }
+        return true; // Both coins have been found
+    }
+
+}

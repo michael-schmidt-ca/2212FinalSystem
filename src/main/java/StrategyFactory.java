@@ -5,12 +5,13 @@ public class StrategyFactory {
      * @return appropriate subclass strategy object based on what the user enters as their desired strategy
      */
     public Strategy create(String strategy){
-        return new TestStrategy();
-//        switch (strategy){
-//            case "GammaSqueeze": return new StrategyGammaSqueeze();
-////            case "ValueInvestingStrategy": return new ValueInvestingStrategy();
-//            case "ValueInvesting": return new StrategyValueInvesting();
-//        }
-//        return null; // THIS SHOULD BE AN ERROR MESSAGE if no strategy
+
+        switch (strategy){
+            case "GammaSqueeze": return new StrategyGammaSqueeze();
+            case "FactorInvestion": return new StrategyFactorInvesting();
+            case "ValueInvesting": return new StrategyValueInvesting();
+            case "MomentumInvesting": return new StrategyMomentumInvesting();
+        }
+        return new TestStrategy(); // THIS SHOULD BE AN ERROR MESSAGE if no strategy
     }
 }
