@@ -34,7 +34,8 @@ public class HistogramViewer implements TradingObservers {
         for (int row=0; row < trades.size(); row++){
             System.out.println("Broker: "+trades.get(row).getBroker().getName());
             System.out.println("Strategy: "+trades.get(row).getStrategy().getName());
-            dataset.setValue(10, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
+//            dataset.setValue(10, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
+            dataset.addValue(10, trades.get(row).getBroker().getName(),trades.get(row).getStrategy().getName());
         }
         System.out.println("=================================");
 
