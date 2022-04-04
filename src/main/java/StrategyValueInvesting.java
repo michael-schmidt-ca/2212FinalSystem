@@ -22,15 +22,15 @@ public class StrategyValueInvesting implements Strategy{
             return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
         }
 
-        if (coinDataBase.getCoinInfo(coinList[0]).getPrice() > 3000){
-            StrategyResult testResult = new StrategyResult(600, coinList[0],"Buy", LocalDate.now(),
-                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+        if (coinDataBase.getCoinInfo(strategyCoin1).getPrice() > 3000){
+            StrategyResult testResult = new StrategyResult(600, strategyCoin1,"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
 
             return testResult;
         } else {
-            StrategyResult testResult = new StrategyResult(300, coinList[1],"Sell", LocalDate.now(),
-                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+            StrategyResult testResult = new StrategyResult(300, strategyCoin2,"Sell", LocalDate.now(),
+                    coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
             return testResult;
         }

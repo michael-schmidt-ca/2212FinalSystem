@@ -22,15 +22,15 @@ public class StrategyFactorInvesting implements Strategy{
             return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
         }
 
-        if (coinDataBase.getCoinInfo(coinList[0]).getPrice()/40 > coinDataBase.getCoinInfo(coinList[1]).getPrice()){
-            StrategyResult testResult = new StrategyResult(10, coinList[0],"Sell", LocalDate.now(),
-                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+        if (coinDataBase.getCoinInfo(strategyCoin1).getPrice()/40 > coinDataBase.getCoinInfo(strategyCoin2).getPrice()){
+            StrategyResult testResult = new StrategyResult(10, strategyCoin1,"Sell", LocalDate.now(),
+                    coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
 
             return testResult;
         } else {
-            StrategyResult testResult = new StrategyResult(400, coinList[1],"Buy", LocalDate.now(),
-                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+            StrategyResult testResult = new StrategyResult(400, strategyCoin2,"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
             return testResult;
         }

@@ -22,15 +22,15 @@ public class StrategyGammaSqueeze implements Strategy{
             return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
         }
 
-        if (coinDataBase.getCoinInfo(coinList[0]).getPrice() > 45000){
-            StrategyResult testResult = new StrategyResult(1000, coinList[0],"Buy", LocalDate.now(),
-                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+        if (coinDataBase.getCoinInfo(strategyCoin1).getPrice() > 45000 && coinDataBase.getCoinInfo(strategyCoin2).getPrice() > 4500){
+            StrategyResult testResult = new StrategyResult(1000, strategyCoin1,"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
 
             return testResult;
         } else {
-            StrategyResult testResult = new StrategyResult(0, coinList[0],"Buy", LocalDate.now(),
-                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+            StrategyResult testResult = new StrategyResult(0, strategyCoin1,"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
             return testResult;
         }

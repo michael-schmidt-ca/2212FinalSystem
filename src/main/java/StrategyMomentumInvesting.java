@@ -22,15 +22,15 @@ public class StrategyMomentumInvesting implements Strategy{
             return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
         }
 
-        if (coinDataBase.getCoinInfo(coinList[0]).getPrice() > coinDataBase.getCoinInfo(coinList[1]).getPrice() * 10){
-            StrategyResult testResult = new StrategyResult(500, coinList[0],"Buy", LocalDate.now(),
-                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+        if (coinDataBase.getCoinInfo(strategyCoin1).getPrice() > coinDataBase.getCoinInfo(strategyCoin2).getPrice() * 10){
+            StrategyResult testResult = new StrategyResult(500, strategyCoin1,"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
 
             return testResult;
         } else {
-            StrategyResult testResult = new StrategyResult(400, coinList[1],"Buy", LocalDate.now(),
-                    coinDataBase.getCoinInfo(coinList[0]).getPrice(),
+            StrategyResult testResult = new StrategyResult(400, strategyCoin2,"Buy", LocalDate.now(),
+                    coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
             return testResult;
         }
