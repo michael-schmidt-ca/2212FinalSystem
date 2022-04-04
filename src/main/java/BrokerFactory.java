@@ -24,7 +24,7 @@ public class BrokerFactory {
 //        }
 
 //        return realNames;
-        return usrSelection.getTckrLst().split(",");
+        return usrSelection.getTckrLst();
     }
     private Strategy retrieveStrategy(UsrSelection usrSelection){
         StrategyFactory factory = new StrategyFactory();

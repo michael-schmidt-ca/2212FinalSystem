@@ -99,6 +99,10 @@ public class BrokerList{
         return false;
     }
 
+    public void clearBrokerList(){
+        this.brokerArrayList.clear();
+    }
+
     public String[] getExhaustiveCoinList(){
         return fullCoinList;
     }

@@ -51,4 +51,8 @@ public class MainSystem {
         tradeLog.attach(histogram);
         tradeLog.attach(table);
     }
+
+    public static void clearBrokerList(){
+        brokerList.clearBrokerList();
+    }
 }

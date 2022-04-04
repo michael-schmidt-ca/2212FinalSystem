@@ -5,11 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -53,6 +49,9 @@ public class MainUI extends JFrame implements ActionListener {
     private DefaultTableModel dtm;
     private JTable table;
 
+    private String[] coinsArray;
+    private String[] brokerArray;
+
     public static MainUI getInstance() {
         if (instance == null)
             instance = new MainUI();
@@ -65,42 +64,7 @@ public class MainUI extends JFrame implements ActionListener {
         // Set window title
         super("Crypto Trading Tool");
 
-        // Set top bar
-
-
         JPanel north = new JPanel();
-
-//		north.add(strategyList);
-
-        // Set bottom bar
-//		JLabel from = new JLabel("From");
-//		UtilDateModel dateModel = new UtilDateModel();
-//		Properties p = new Properties();
-//		p.put("text.today", "Today");
-//		p.put("text.month", "Month");
-//		p.put("text.year", "Year");
-//		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
-//		@SuppressWarnings("serial")
-//		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new AbstractFormatter() {
-//			private String datePatern = "dd/MM/yyyy";
-//
-//			private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePatern);
-//
-//			@Override
-//			public Object stringToValue(String text) throws ParseException {
-//				return dateFormatter.parseObject(text);
-//			}
-//
-//			@Override
-//			public String valueToString(Object value) throws ParseException {
-//				if (value != null) {
-//					Calendar cal = (Calendar) value;
-//					return dateFormatter.format(cal.getTime());
-//				}
-//
-//				return "";
-//			}
-//		});
 
         JButton trade = new JButton("Perform Trade");
         trade.setActionCommand("refresh");
@@ -180,8 +144,15 @@ public class MainUI extends JFrame implements ActionListener {
     // PRESING TRADE BUTTON
     @Override
     public void actionPerformed(ActionEvent e) {
+
         String command = e.getActionCommand();
         if ("refresh".equals(command)) {
+            //reset values
+            //when trades button is pressed reset the brokerList object
+            MainSystem.clearBrokerList();
+            Arrays.fill(coinsArray, null);
+            Arrays.fill(brokerArray, null);
+
             for (int count = 0; count < dtm.getRowCount(); count++){
                 Object traderObject = dtm.getValueAt(count, 0);
                 if (traderObject == null) {
@@ -203,7 +174,21 @@ public class MainUI extends JFrame implements ActionListener {
                 String strategyName = strategyObject.toString();
                 //for each line in table make a usrSelectionObject
                 //System.out.println(traderName + " " + coinNames + " " + strategyName);
+
+                //see if the name of the broker has been added before... if it has... don't add it and tell the user.
+
                 MainSystem.addUserSelection(traderName,coinNames,strategyName); // connects the user selections to the back end
+
+                //check to see if the coins entered are valid... if not tell the user which row is invalid
+                coinsArray = coinNames.split(",");
+                coinInfo = Arrays.asList(coinsArray);
+                for (int j=0; j<coinInfo.length; j++){
+                    coinInfo[j] = coinInfo[j].toLowerCase(Locale.ROOT).trim();
+                }
+//                if(!coinList.contains(input){
+//                    JOptionPane.showMessageDialog(this,"Wrong name");
+//                }
+                JOptionPane.showMessageDialogue("Wrong name");
             }
             stats.removeAll();
             MainSystem.invokeStrategies(); // Attaches the visualisers
