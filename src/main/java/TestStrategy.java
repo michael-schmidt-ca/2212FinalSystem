@@ -33,7 +33,7 @@ public class TestStrategy implements Strategy{
     }
     private boolean linearSearch(String targetCoin, String[] coins){ // simple linear search algo to find coin
         for (String coin: coins){
-            if (targetCoin.equals(coin.toLowerCase(Locale.ROOT)))
+            if (targetCoin.toLowerCase(Locale.ROOT).equals(coin))
             return true;
         }// end of loop
         return false;
@@ -43,8 +43,11 @@ public class TestStrategy implements Strategy{
     }
     private boolean validateUsrCoins(String[] coinList){
         for (String coin: coinList){
-            System.out.println("went here");
-            if (!(linearSearch(coin,getRequiredCoins()))) return false; // if the coin is not found in the linear search return false
+            if (!(linearSearch(coin,getRequiredCoins()))|| coinList.length < getRequiredCoins().length) { // if coin not found or not enough coins
+                System.out.println("WRONG COIN INFO");
+                return false;
+            }
+                 // if the coin is not found in the linear search return false
         }
       return true; // Both coins have been found
     }
