@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.io.IOException;
 
 public class LoginUI extends JFrame implements ActionListener {
+    //create and initialize the elements of the UI (i.e. labels, text fields, buttons, etc.)
     private static JPanel panel = new JPanel();
     private static JFrame frame = new JFrame();
 
@@ -24,11 +25,11 @@ public class LoginUI extends JFrame implements ActionListener {
 
     private static JCheckBox showPass = new JCheckBox("Show Password");
 
+    //object
     private static LoginUI instance;
 
     /** GetInstance Method: this method will make the LoginUI the current instance.
      * This is ane example of Singleton design patter
-     *
      * @return the instance of the current window
      */
     public static LoginUI getInstance() {
@@ -110,17 +111,26 @@ public class LoginUI extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        // loginButton action class that will commence only when the login button is clicked
         if(e.getSource() == loginBtn){
+            // normalize the username field (i.e. make it lowercase) and dump it into a string
             String User = username.getText().toLowerCase();
+            // dump input password into a string
             String Pass = String.valueOf(password.getPassword());
+            // if the input fields are empty, prompt the user to enter something in before proceeding
             if(User.isEmpty() && Pass.isEmpty())
                 JOptionPane.showMessageDialog(this, "Enter your Username and Password");
             else {
                 try {
+                    // call the validator method to validate the login
                     if (LoginValidator.validate(User, Pass)) {
+                        // if the login was valid, close the current UI and call the loginCheck method in MainSystem with true
+                        // this loginChek method will begin the MainUI so trading can commence
                         frame.dispose();
                         MainSystem.loginCheck(true);
                     } else {
+                        //if the login was a fail, notify the user with a JOptionPane and pass false to the MainSystem.loginCheck method
+                        //When false is passed, the program will terminate, as per the instructions
                         JOptionPane.showMessageDialog(this, "LOGIN FAILED \nProgram will now terminate");
                         MainSystem.loginCheck(false);
                     }
@@ -129,10 +139,12 @@ public class LoginUI extends JFrame implements ActionListener {
                 }
             }
         }
+        // reset button that will clear the fields if the user so chooses to
         if(e.getSource() == resetBtn){
             username.setText("");
             password.setText("");
         }
+        // show password checkbox that will toggle btwn showing the password characters as ***** or as alphanumeric characters
         if(e.getSource() == showPass){
             if(!showPass.isSelected())
                 password.setEchoChar('*');
