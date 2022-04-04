@@ -173,6 +173,12 @@ public class MainUI extends JFrame implements ActionListener {
         frame.pack();
         frame.setVisible(true);
     }
+    public static void catchCoinError(){
+        JOptionPane.showMessageDialog(null, "Unexpected Error\n Coin input is invalid");
+    }
+    public static void catchDoubleBroker(){
+        JOptionPane.showMessageDialog(null, "Unexpected Error\n Coin input is invalid");
+    }
 
     // PRESING TRADE BUTTON
     @Override
@@ -214,6 +220,9 @@ public class MainUI extends JFrame implements ActionListener {
                     //for each line in table make a usrSelectionObject
                     MainSystem.addUserSelection(traderName,coinNames,strategyName); // connects the user selections to the back end
                     brokerNames.add(traderName);
+                }
+                else{
+                    catchDoubleBroker();
                 }
             }
             stats.removeAll();

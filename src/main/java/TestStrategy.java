@@ -1,3 +1,5 @@
+import jdk.jfr.internal.tool.Main;
+
 import java.time.LocalDate;
 import java.util.Locale;
 
@@ -17,6 +19,7 @@ public class TestStrategy implements Strategy{
 
          // if the required coins are not present the strategy will return a
         if (!validateUsrCoins(coinList)) {
+            MainUI.catchCoinError();
             return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
         }
 
