@@ -2,9 +2,9 @@ public class Coin {
 
     private String ticker;
     private String fullName;
-    private long price;
+    private double price;
 
-    public Coin(String ticker, String fullName, long price){
+    public Coin(String ticker, String fullName, double price){
         this.fullName = fullName;
         this.ticker = ticker;
         this.price = price;
@@ -18,11 +18,11 @@ public class Coin {
         return fullName;
     }
 
-    public long getPrice(){
+    public double getPrice(){
         return price;
     }
 
-    public void setPrice(long newPrice){
+    public void setPrice(double newPrice){
         price = newPrice;
     }
 

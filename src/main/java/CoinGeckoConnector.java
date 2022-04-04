@@ -93,10 +93,10 @@ public class CoinGeckoConnector {
                 JSONObject coinInfo = (JSONObject) apiReturnJSON.get(coinsList[i]);
 
                 if (curMap.containsKey(coinsList[i])) { // If interested in this object
-                    curMap.get(coinsList[i]).setPrice((long) (coinInfo.get(currencyType)));
+                    curMap.get(coinsList[i]).setPrice((Double) coinInfo.get(currencyType));
                 } else {
                     Coin newCoin = new Coin("TICKERHOLDER", coinsList[i],
-                            (long) ((Number)(coinInfo.get(currencyType))).doubleValue());
+                             ((Number)(coinInfo.get(currencyType))).doubleValue());
                     curMap.put(coinsList[i], newCoin);
                 }
 

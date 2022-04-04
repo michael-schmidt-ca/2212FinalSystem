@@ -6,7 +6,7 @@ public class StrategyResult {
     private String coin;
     private String action;
     private LocalDate date;
-    private long price;
+    private double price;
     private Broker broker;
     private Strategy strategy;
 
@@ -20,7 +20,7 @@ public class StrategyResult {
      * @param broker broker executing trade
      * @param strategy strategy used to determine trade
      */
-    public StrategyResult(int quantity, String coin, String action, LocalDate date, long price, Broker broker, Strategy strategy) {
+    public StrategyResult(int quantity, String coin, String action, LocalDate date, double price, Broker broker, Strategy strategy) {
         this.quantity = quantity;
         this.coin = coin;
         this.action = action;
@@ -83,7 +83,7 @@ public class StrategyResult {
      * getter method for price per unit of transaction
      * @return price per unit of transaction
      */
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -91,7 +91,7 @@ public class StrategyResult {
      * setter method for price per unit of transaction
      * @param price price to set
      */
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

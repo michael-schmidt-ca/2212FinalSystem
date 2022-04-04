@@ -15,7 +15,7 @@ public class TestStrategy implements Strategy{
 
 
          // if the required coins are not present the strategy will return a
-         if (!validateUsrCoins(coinList)) return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
+        if (!validateUsrCoins(coinList)) return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
 
         if (coinDataBase.getCoinInfo(coinList[0]).getPrice() > coinDataBase.getCoinInfo(coinList[1]).getPrice()){
             StrategyResult testResult = new StrategyResult(1000, coinList[0],"Buy", LocalDate.now(),
@@ -33,7 +33,7 @@ public class TestStrategy implements Strategy{
     }
     private boolean linearSearch(String targetCoin, String[] coins){ // simple linear search algo to find coin
         for (String coin: coins){
-            if (targetCoin.equals(coin.toLowerCase(Locale.ROOT)));
+            if (targetCoin.equals(coin.toLowerCase(Locale.ROOT)))
             return true;
         }// end of loop
         return false;
@@ -43,6 +43,7 @@ public class TestStrategy implements Strategy{
     }
     private boolean validateUsrCoins(String[] coinList){
         for (String coin: coinList){
+            System.out.println("went here");
             if (!(linearSearch(coin,getRequiredCoins()))) return false; // if the coin is not found in the linear search return false
         }
       return true; // Both coins have been found
