@@ -177,6 +177,7 @@ public class MainUI extends JFrame implements ActionListener {
         frame.pack();
         frame.setVisible(true);
     }
+
     // PRESING TRADE BUTTON
     @Override
     public void actionPerformed(ActionEvent e) {

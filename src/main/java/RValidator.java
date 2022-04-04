@@ -1,8 +1,21 @@
+/**
+ * @author Satvir Uppal
+ * CS2212 - Intro to Software Engineering
+ * @purpose the realValidator that implements the proxy design pattern
+ * this class is the realValidator, the one that the client code is unable to access (hence the proxy design pattern)
+ */
 import java.io.IOException;
 import java.util.Hashtable;
 
 public class RValidator implements Validator{
 
+    /**
+     * Validation class that is the **ACTUAL** validation class, this one is the class that does the validating of the user and password strings
+     * @param user
+     * @param pass
+     * @return the boolean if the password matches the data of the key (username)
+     * @throws IOException
+     */
     @Override
     public Boolean validation(String user, String pass) throws IOException {
         try {
