@@ -25,10 +25,11 @@ public class TradeLog implements DisplayInfo{
             o.update();
         }
     }
-    public boolean addTrade(StrategyResult s){return trades.add(s);}
+    public boolean addTrade(StrategyResult s){
+        return trades.add(s);
+    }
     public void attach(TradingObservers observer){
         observers.add(observer);
     }
-
 
 }

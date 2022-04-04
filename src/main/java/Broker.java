@@ -10,8 +10,6 @@ public class Broker {
         setStrategy(strategy);
     }
 
-
-
     public void setName(String name) {
         this.name = name;
     }
@@ -28,10 +26,15 @@ public class Broker {
         return name;
     }
     public String[] getCryptoTickerList(){
-        return cryptoTickerList;
+        return cryptoTickerList; //NOTE THIS IS ACTUALLY THE FULL NAMES, NOT TICKERS
     }
 
     public Strategy getStrategy(){
         return strategy;
     }
+
+    public StrategyResult determineTrade(CoinsInfo dataBase){
+        return strategy.determineExecution(cryptoTickerList,dataBase,this);
+    }
+
 }

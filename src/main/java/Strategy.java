@@ -1,7 +1,6 @@
 public interface Strategy {
 
-     StrategyResult calcStrategy(Broker b, CoinsInfo coinDataBase);
     String getName();
-
+    StrategyResult determineExecution(String[] coinList, CoinsInfo coinDataBase, Broker broker);
 
 }

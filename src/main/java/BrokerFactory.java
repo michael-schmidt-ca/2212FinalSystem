@@ -5,8 +5,6 @@ public class BrokerFactory {
                 retrieveName(usrSelection),
                 retrieveTckrLst(usrSelection),
                 retrieveStrategy(usrSelection));
-
-
     }
 
     private String retrieveName(UsrSelection usrSelection){
