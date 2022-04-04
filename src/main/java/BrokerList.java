@@ -77,24 +77,10 @@ public class BrokerList{
         }
     }
 
-    //does this edit a brokers coin list????
-    public void editCoinList(Broker b, String[] coinsEnteredToUI, UsrSelection originalSelectionObject) {
-        BrokerFactory tempUpdater = new BrokerFactory();
-        originalSelectionObject.setTckrLst(coinsEnteredToUI);
-        String[] updatedList = tempUpdater.create(originalSelectionObject).getCryptoTickerList();
-        b.setCryptoTickerList(updatedList);
-        genCoinList();
-    }
-
-    //does this edit a brokers strategy? i will assume that this works
-    public void editStrategy(Broker b, String stratEnteredToUI, UsrSelection originalSelectionObject) {
-        BrokerFactory tempUpdater = new BrokerFactory();
-        originalSelectionObject.setStrategy(stratEnteredToUI);
-        Strategy updatedStrat = tempUpdater.create(originalSelectionObject).getStrategy();
-        b.setStrategy(updatedStrat);
-    }
-
-    /*BIG DADDY TRADING METHOD */
+    /**
+     * function to call upon each broker in list to evaluate, and perform, trades
+     * @param tradeLog the current log of trades.
+     */
     public void trade(TradeLog tradeLog){
 
         coinDataBase.updateInfo(fullCoinList);
@@ -103,14 +89,15 @@ public class BrokerList{
             System.out.println("Added trade for broker #" + brokerArrayList.get(i).getName());
             tradeLog.addTrade(result);
         }
-//        for (Broker broker: brokerArrayList){
-//            StrategyResult result = broker.getStrategy().calcStrategy(broker,coinDataBase);
-//            tradeLog.addTrade(result);
-//        }
         tradeLog.notifyObservers();
 
     }
 
+    /**
+     * method to determine if a coin is within the current broker list's scope
+     * @param ticker coin to check
+     * @return whether the coin exists in the list
+     */
     private boolean tickerInList(String ticker){
         for (int i = 0; i < fullCoinList.length; i ++){
             if (fullCoinList[i].equals(ticker)){
@@ -120,10 +107,17 @@ public class BrokerList{
         return false;
     }
 
+    /**
+     * method to clear the list of brokers
+     */
     public void clearBrokerList(){
         this.brokerArrayList.clear();
     }
 
+    /**
+     * getter method for a full coin list
+     * @return a full list of coins
+     */
     public String[] getExhaustiveCoinList(){
         return fullCoinList;
     }
