@@ -19,8 +19,7 @@ public class RValidator implements Validator{
     @Override
     public Boolean validation(String user, String pass) throws IOException {
         try {
-            Hashtable<String, String> userData = UserDatabase.getDatabase();
-            System.out.println(userData);
+            Hashtable<String, String> userData = UserDatabase.getDatabase(); //create a new Hashtable and fill it using the UserDatabase class
             if(userData != null && !userData.isEmpty()){ //check if the hashtable is either null or not empty
                 if(userData.get(user) != null){ //if there is a password
                     return userData.get(user).equals(pass); //return if the password matches
