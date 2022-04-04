@@ -9,10 +9,16 @@ import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
+/**
+ * connector class to streamline communication with CoinGecko API
+ */
 public class CoinGeckoConnector {
 
-
+    /**
+     * method to determine of a coin exists within coinGecko
+     * @param coinName full id of coin in question
+     * @return whether coin is valid
+     */
     public static boolean coinExists(String coinName){
         try {
             // Creates a URL object with proper strings
@@ -41,6 +47,13 @@ public class CoinGeckoConnector {
         return false;
     }
 
+    /**
+     * basic update call for a hashmap of coin objects
+     * @param coinsList list of all coins in use
+     * @param currencyType currency to provide information in
+     * @param curMap current HashMap of coins
+     * @return a new hashmap with updated price values
+     */
     public static HashMap<String, Coin> basicCall(String[] coinsList, String currencyType, HashMap<String, Coin> curMap) {
         try {
             // Converting coin list to a ',' seperated string (problem here is that its expecting to get the full names) Adapter might be placed before this layer
