@@ -5,42 +5,64 @@
 
 import java.util.ArrayList;
 
-/*BrokerList = Controller (Observer design pattern)*/
+
 public class BrokerList{
 
     private ArrayList<Broker> brokerArrayList = new ArrayList();
     private String[] fullCoinList;
     private CoinsInfo coinDataBase = new CoinsInfo();
 
-
+    /**
+     * getter method for the brokerList
+     * @return the brokerList containing all brokers the user has added
+     */
     public ArrayList<Broker> getBrokerArrayList() {
         return this.brokerArrayList;
     }
 
+    /**
+     * Getter method for a specific broker in the brokerList
+     * @param brokerName
+     * @return Broker object if the broker is in the brokerList else null
+     */
     public Broker getBroker(String brokerName) {
         for (int i = 0; i < brokerArrayList.size(); i ++){
             if (brokerArrayList.get(i).getName().equals(brokerName)){
                 return brokerArrayList.get(i);
             }
         }
-        System.out.println("Broker DNE"); //TESTING ONLY, REMOVE ON FINAL
         return null;
     }
 
+    /**
+     * Removes target broker from broker list
+     * @param b
+     * @return true if the broker has been removed properly
+     */
     public boolean removeBroker(Broker b) {
         boolean retValue = this.brokerArrayList.remove(b);
         genCoinList();
         return retValue;
     }
 
+    /**
+     * If the broker is not already in the broker list it is added to the list, if the broker is already present it wont add it
+     * @param b
+     * @return true if the broker was added properly false if the broker couldnt be added
+     */
     public boolean addBroker(Broker b) {
-        boolean retValue = this.brokerArrayList.add(b);
-        System.out.println("ADDED A BROKER " + b.getName());
-        //throw new RuntimeException();
-        genCoinList();
-        return retValue;
+        if (getBroker(b.getName())==null) {
+            boolean retValue = this.brokerArrayList.add(b);
+            System.out.println("ADDED A BROKER " + b.getName());
+            //throw new RuntimeException(); if broker exist should not add the broker
+            genCoinList();
+            return retValue;
+        }
+        else {
+            System.out.println("BROKER NOT ADDED ");
+            return false;
+        }
     }
-
     private void genCoinList(){ //UPDATES THE FULL COIN LIST WHENEVER A CHANGE IS MADE TO THE BROKER LIST
         ArrayList<String> startList = new ArrayList<>(); //list of coins
         for (int i = 0; i < brokerArrayList.size(); i ++){ //loop through brokers
@@ -56,7 +78,7 @@ public class BrokerList{
         }
     }
 
-    //does this edit a brokers coin list????
+    //does this edit a brokers coin list???? / yes it does
     public void editCoinList(Broker b, String[] coinsEnteredToUI, UsrSelection originalSelectionObject) {
         BrokerFactory tempUpdater = new BrokerFactory();
         originalSelectionObject.setTckrLst(coinsEnteredToUI);
