@@ -1,7 +1,10 @@
+import jdk.jfr.internal.tool.Main;
+
 import java.time.LocalDate;
 import java.util.Locale;
 
 public class TestStrategy implements Strategy{
+
     private final String stratName = "TESTSTRAT";
     private final String strategyCoin1 = "bitcoin";
     private final String strategyCoin2 = "dogecoin";
@@ -15,7 +18,10 @@ public class TestStrategy implements Strategy{
 
 
          // if the required coins are not present the strategy will return a
-        if (!validateUsrCoins(coinList)) return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
+        if (!validateUsrCoins(coinList)) {
+            MainUI.catchCoinError();
+            return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
+        }
 
         if (coinDataBase.getCoinInfo(coinList[0]).getPrice() > coinDataBase.getCoinInfo(coinList[1]).getPrice()){
             StrategyResult testResult = new StrategyResult(1000, coinList[0],"Buy", LocalDate.now(),

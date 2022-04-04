@@ -25,7 +25,7 @@ public class LoginUI extends JFrame implements ActionListener {
 
     private static JCheckBox showPass = new JCheckBox("Show Password");
 
-    //object
+    //object of type LoginUI that will create an instance of the window
     private static LoginUI instance;
 
     /** GetInstance Method: this method will make the LoginUI the current instance.
