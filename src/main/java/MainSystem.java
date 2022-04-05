@@ -10,7 +10,7 @@ public class MainSystem {
     static TradeLog tradeLog= new TradeLog();
 
     static HistogramViewer histogram = new HistogramViewer(tradeLog);
-    static TableViewer table = new TableViewer(tradeLog); // NEED TO ATTACH THESE TO THE VIEWER
+    static TableViewer table = new TableViewer(tradeLog);
 
     /**
      * main method starts the whole system, runs the login ui

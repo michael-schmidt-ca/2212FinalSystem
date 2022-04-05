@@ -1,3 +1,8 @@
+/**
+ * @author Michael Schmidt, Xavier Hill Roy
+ * CS2212 - Intro to Software Engineering
+ * @purpose Factor investing strategy (implementation of strategy type)
+ */
 
 import java.time.LocalDate;
 import java.util.Locale;
