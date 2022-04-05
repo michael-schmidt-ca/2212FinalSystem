@@ -1,9 +1,10 @@
 /**
  * @author Xavier Hill Roy
  * CS2212 - Intro to Software Engineering
- * @purpose /* User creates this by entering strings into the ui this object gets past to broker factory which then creates a broker object based on the inputted strings
+ * @purpose User creates this by entering strings into the ui this object gets past to broker factory which then creates a broker object based on the inputted strings
  *      These are the strings entered by user when choosing what he wants to create-
- *     This is then used and converted to strategies and broker using the appropriate factories */
+ *     This is then used and converted to strategies and broker using the appropriate factories
+ */
 public class UsrSelection {
 
     private String name;
