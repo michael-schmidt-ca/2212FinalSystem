@@ -1,3 +1,9 @@
+/**
+ * @author Samuel Near
+ * CS2212 - Intro to Software Engineering
+ * @purpose this class provides a main system so the loginUI and mainUI can communicate with
+ * backend systems: tradelog, brokerList, Histogram and table viewer.
+ */
 public class MainSystem {
 
     static BrokerList brokerList = new BrokerList();
@@ -6,6 +12,10 @@ public class MainSystem {
     static HistogramViewer histogram = new HistogramViewer(tradeLog);
     static TableViewer table = new TableViewer(tradeLog); // NEED TO ATTACH THESE TO THE VIEWER
 
+    /**
+     * main method starts the whole system, runs the login ui
+     * then attached observers
+     */
     public static void main(String[] args) {
 
         //Display Login UI
@@ -25,6 +35,12 @@ public class MainSystem {
         }
     }
 
+    /**
+     *
+     * @param name name of the broker object
+     * @param coins list of coins the user inputted for the broker
+     * @param strategy strategy the user chose for the broker to use
+     */
     public static void addUserSelection(String name, String[] coins, String strategy){
         UsrSelection newSelection = new UsrSelection(name,coins,strategy);
         //create broker factory
@@ -35,17 +51,27 @@ public class MainSystem {
         brokerList.addBroker(newBroker);
     }
 
-    // Creating method for attaching observers not sure if this is right?
+    /**
+     * method invokeStrategies occurs after the user presses the trade button
+     * takes the list of all the brokers and invokes method trade
+     * passing it an empty trade log.
+     */
     public static void invokeStrategies(){
-
         brokerList.trade(tradeLog);
-
     }
+
+    /**
+     * attach histogram and table.
+     */
     public static void attachObservers(){
         tradeLog.attach(histogram);
         tradeLog.attach(table);
     }
 
+    /**
+     * method clearBrokerList clears the list of brokers. This method
+     * is invoked everytime the trade button is pressed.
+     */
     public static void clearBrokerList(){
         brokerList.clearBrokerList();
     }
