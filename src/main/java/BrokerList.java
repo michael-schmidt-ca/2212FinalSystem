@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 import java.util.ArrayList;
 
 /*BrokerList = Controller (Observer design pattern)*/
@@ -31,7 +26,6 @@ public class BrokerList{
                 return brokerArrayList.get(i);
             }
         }
-        System.out.println("Broker DNE"); //TESTING ONLY, REMOVE ON FINAL
         return null;
     }
 
@@ -53,7 +47,6 @@ public class BrokerList{
      */
     public boolean addBroker(Broker b) {
         boolean retValue = this.brokerArrayList.add(b);
-        System.out.println("ADDED A BROKER " + b.getName());
         genCoinList();
         return retValue;
     }
@@ -87,7 +80,7 @@ public class BrokerList{
 
         for (int i = 0; i < brokerArrayList.size(); i ++){
             StrategyResult result = brokerArrayList.get(i).determineTrade(coinDataBase);
-            System.out.println("Added trade for broker #" + brokerArrayList.get(i).getName());
+            //System.out.println("Added trade for broker #" + brokerArrayList.get(i).getName());
             tradeLog.addTrade(result);
         }
         tradeLog.notifyObservers();

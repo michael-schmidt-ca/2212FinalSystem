@@ -8,13 +8,11 @@ public class MainSystem {
 
     public static void main(String[] args) {
 
-        boolean loginValid = false;
         //Display Login UI
         //LoginUI.launchLogInUI();
         MainUI.LaunchMainUI();
-        // Not sure where I should attach observers will try here
+        // attach observers
         attachObservers();
-
     }
 
     //If login UI returns false exit system
@@ -36,18 +34,15 @@ public class MainSystem {
         Broker newBroker = brokerFactory.create(newSelection);
         //add broker to list
         brokerList.addBroker(newBroker);
-        //System.out.println(brokerList.getBrokerArrayList().get(0).getName()); working
     }
 
     // Creating method for attaching observers not sure if this is right?
     public static void invokeStrategies(){
 
-        System.out.println("In method invokeStrategies");
         brokerList.trade(tradeLog);
 
     }
     public static void attachObservers(){
-        System.out.println("Attached viewers");
         tradeLog.attach(histogram);
         tradeLog.attach(table);
     }

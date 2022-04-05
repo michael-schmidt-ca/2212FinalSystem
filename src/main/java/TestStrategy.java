@@ -18,7 +18,7 @@ public class TestStrategy implements Strategy{
 
          // if the required coins are not present the strategy will return a
         if (!validateUsrCoins(coinList)) {
-            MainUI.catchCoinError();
+            MainUI.catchCoinError(broker);
             return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
         }
 
@@ -51,14 +51,6 @@ public class TestStrategy implements Strategy{
     private boolean validateUsrCoins(String[] coinList){
         for (String coin: coinList){
             if (!(linearSearch(coin,getRequiredCoins()))|| coinList.length < getRequiredCoins().length) { // if coin not found or not enough coins
-                System.out.println("WRONG COIN INFO");
-                /*
-                call the mainUI class with something like:
-                MainUI.catchCoinError(True);
-                    then in the MainUI you have a method that will open a window
-                    in this window it will prompt you that there was an error
-                    and then passes a value to the MainSystem that will write to the table
-                 */
                 return false;
             }
                  // if the coin is not found in the linear search return false

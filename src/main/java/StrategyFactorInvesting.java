@@ -18,7 +18,7 @@ public class StrategyFactorInvesting implements Strategy{
 
         // if the required coins are not present the strategy will return a
         if (!validateUsrCoins(coinList)) {
-            MainUI.catchCoinError();
+            MainUI.catchCoinError(broker);
             return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
         }
 
@@ -51,7 +51,6 @@ public class StrategyFactorInvesting implements Strategy{
     private boolean validateUsrCoins(String[] coinList){
         for (String coin: coinList){
             if (!(linearSearch(coin,getRequiredCoins()))|| coinList.length < getRequiredCoins().length) { // if coin not found or not enough coins
-                System.out.println("WRONG COIN INFO");
                 return false;
             }
             // if the coin is not found in the linear search return false

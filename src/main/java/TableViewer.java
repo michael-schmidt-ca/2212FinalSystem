@@ -21,13 +21,6 @@ public class TableViewer implements TradingObservers {
         Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
 
         Object[][] data = toArray(); // SHOULD HAVE ACTUAL DATA
-        for (Object[] o : data){ // test to see if its printing
-            //System.out.println("================");
-            for (Object s : o){
-                //System.out.println(o);
-                //System.out.println(s);
-            }
-        }
 
         JTable table = new JTable(data, columnNames);
         //table.setPreferredSize(new Dimension(600, 300));
@@ -68,11 +61,19 @@ public class TableViewer implements TradingObservers {
                         break;
                     }
                     case 4:{
-                        realData[row][column]=trades.get(row).getQuantity();
+                        if(trades.get(row).getQuantity() == -1){
+                            realData[row][column]= "null";
+                        }else{
+                            realData[row][column]=trades.get(row).getQuantity();
+                        }
                         break;
                     }
                     case 5:{
-                        realData[row][column]=trades.get(row).getPrice();
+                        if(trades.get(row).getPrice() == -1.0){
+                            realData[row][column]= "null";
+                        }else {
+                            realData[row][column] = trades.get(row).getPrice();
+                        }
                         break;
                     }
                     case 6:{
