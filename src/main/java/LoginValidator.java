@@ -1,7 +1,7 @@
 /**
  * @author Satvir Uppal
  * CS2212 - Intro to Software Engineering
- * @purpose This class is the LoginValidator, it implments a proxy design pattern such that it creates a proxy object
+ * @purpose This class is the LoginValidator, it implements a proxy design pattern such that it creates a proxy object
  * of the Validator interface and utilizes this to check the login
  * this is a part of the client code
  */
