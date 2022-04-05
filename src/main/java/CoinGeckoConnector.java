@@ -10,7 +10,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- * connector class to streamline communication with CoinGecko API
+ * @author Michael Schmidt
+ * CS2212 - Intro to Software Engineering
+ * @purpose connector class to streamline communication with CoinGeckoAPI
  */
 public class CoinGeckoConnector {
 
