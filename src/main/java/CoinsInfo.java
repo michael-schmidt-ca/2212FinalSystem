@@ -3,8 +3,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * CoinsInfo class
- * provides storage, and efficient updates for all information regarding coins used for trading
+ * @author Michael Schmidt
+ * CS2212 - Intro to Software Engineering
+ * @purpose Coin database to efficiently store and provide information on coins
  */
 public class CoinsInfo {
 
