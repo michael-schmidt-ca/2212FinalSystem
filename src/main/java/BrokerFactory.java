@@ -1,3 +1,8 @@
+/**
+ * @author Xavier Hill Roy
+ * CS2212 - Intro to Software Engineering
+ * @purpose This class implements the factory
+ */
 public class BrokerFactory {
     /**
      * creates appropriate broker object based on attributes selected by the user

@@ -1,5 +1,7 @@
 /**
- * class representing a broker capable of performing trades
+ * @author Xavier Hill Roy and Michael Schmidt
+ * CS2212 - Intro to Software Engineering
+ * @purpose This class is the broker that will st
  */
 public class Broker {
     private String name;
