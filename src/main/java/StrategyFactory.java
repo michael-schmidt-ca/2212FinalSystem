@@ -10,11 +10,10 @@ public class StrategyFactory {
      * @return appropriate subclass strategy object based on what the user enters as their desired strategy
      */
     public Strategy create(String strategy){
-
         switch (strategy) {
             case "GammaSqueeze":
                 return new StrategyGammaSqueeze();
-            case "FactorInvestion":
+            case "FactorInvesting":
                 return new StrategyFactorInvesting();
             case "ValueInvesting":
                 return new StrategyValueInvesting();

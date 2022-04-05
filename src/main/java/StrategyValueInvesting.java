@@ -9,7 +9,7 @@ import java.util.Locale;
 
 public class StrategyValueInvesting implements Strategy{
 
-    private final String stratName = "GAMMASTRAT";
+    private final String stratName = "VALUESTRAT";
     private final String strategyCoin1 = "litecoin";
     private final String strategyCoin2 = "ethereum";
     /**
@@ -29,7 +29,6 @@ public class StrategyValueInvesting implements Strategy{
      */
     @Override
     public StrategyResult determineExecution(String[] coinList, CoinsInfo coinDataBase, Broker broker) {
-
 
         // if the required coins are not present the strategy will return a failed strategy result object
         if (!validateUsrCoins(coinList)) {

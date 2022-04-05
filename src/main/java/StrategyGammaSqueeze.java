@@ -29,7 +29,6 @@ public class StrategyGammaSqueeze implements Strategy{
      */
     @Override
     public StrategyResult determineExecution(String[] coinList, CoinsInfo coinDataBase, Broker broker) {
-
         // if the required coins are not present the strategy will return a failed strategy object
         if (!validateUsrCoins(coinList)) {
             MainUI.catchCoinError(broker);
