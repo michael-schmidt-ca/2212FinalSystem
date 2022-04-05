@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -40,8 +42,19 @@ public class CoinsInfo {
      */
     public boolean updateInfo(String[] names){
 
+        ArrayList<String> holder = new ArrayList<>(Arrays.asList(names));
+
+        for (int i = 0; i < holder.size(); i ++){
+            if (!checkValidCoin(holder.get(i))){
+                holder.remove(i);
+            }
+        }
+
+        String[] newList = new String[holder.size()];
+        newList = holder.toArray(newList);
+
         try {
-            coinsMap = CoinGeckoConnector.basicCall(names, "usd", coinsMap);
+            coinsMap = CoinGeckoConnector.basicCall(newList, "usd", coinsMap);
         } catch (Exception infoException){
             System.out.println(infoException);
             return false;

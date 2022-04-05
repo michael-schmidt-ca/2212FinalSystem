@@ -1,13 +1,13 @@
 /**
- * @author Sam Near
+ * @author Samuel Near
  * CS2212 - Intro to Software Engineering
  * @purpose this class is the UI housing of the MainUI that will allow the client to interact with the back end of the
  * Software System. This class, much like the LoginUI will take in user-inputs from either button prompts or text inputs
+ * the majority of this system is taken from the sample code so the commenting is light.
+ *
  */
 
-
 //import libraries that will be used
-
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -33,9 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 public class MainUI extends JFrame implements ActionListener {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     private static MainUI instance;

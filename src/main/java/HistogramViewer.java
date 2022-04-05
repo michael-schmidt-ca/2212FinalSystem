@@ -1,3 +1,9 @@
+/**
+ * @author Samuel Near
+ * CS2212 - Intro to Software Engineering
+ * @purpose HistogramViewer class that will be used to create and utilize the MainUI's Histogram after a trade has happened
+ * The Histogram on the main UI will contain information on the nature of the trade in addition to any relevant data
+ */
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
@@ -14,15 +20,26 @@ import java.util.ArrayList;
 public class HistogramViewer implements TradingObservers {
     /*Observer 1 = Histogram viewer (observer design pattern)*/
     private TradeLog tradeLog;
+    /**
+     * initializer class that initializes the instance varaible
+     * @param tradeLog take in a tradeLog (i.e. the previous tradeLog and use it in this context)
+     */
     HistogramViewer(TradeLog tradeLog){
         this.tradeLog = tradeLog;
     }
+    /**
+     * Update method that calls the createBar (i.e. creates a new bar graph)
+     * called from an external class to commence any methods and algorithms in this class
+     */
     @Override
-
     public void update() {
         createBar();
     }
 
+    /**
+     * CreateBar method that creates a bar graph to show the data of the trades
+     * this class writes to the MainUI with any and all relevant data (i.e. Strategy utilized and quantity)
+     */
     private void createBar() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         //Object[][] realData = new Object[tradeLog.getTradeLog().size()][7];
