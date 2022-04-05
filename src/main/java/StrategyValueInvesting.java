@@ -73,13 +73,22 @@ public class StrategyValueInvesting implements Strategy{
      * @return boolean object, true the broker associates with the required coins for the strategy, and false if it doesnt
      */
     private boolean validateUsrCoins(String[] coinList){
-        for (String coin: coinList){
-            if (!(linearSearch(coin,getRequiredCoins()))|| coinList.length < getRequiredCoins().length) { // if coin not found or not enough coins
-                return false;
+        boolean foundLayer1 = false;
+        for (int i = 0; i < coinList.length; i ++){
+            if (strategyCoin1.equals(coinList[i])){
+                foundLayer1 = true;
             }
-            // if the coin is not found in the linear search return false
         }
-        return true; // Both coins have been found
+        if (!foundLayer1){
+            return false;
+        }
+        boolean foundLayer2 = false;
+        for (int i = 0; i < coinList.length; i ++){
+            if (strategyCoin2.equals(coinList[i])){
+                foundLayer2 = true;
+            }
+        }
+        return foundLayer2;
     }
 
 }

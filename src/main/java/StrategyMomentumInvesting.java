@@ -77,12 +77,21 @@ public class StrategyMomentumInvesting implements Strategy {
      * @return boolean object, true the broker associates with the required coins for the strategy, and false if it doesnt
      */
     private boolean validateUsrCoins(String[] coinList){
-        for (String coin: coinList){
-            if (!(linearSearch(coin,getRequiredCoins()))// negates the linear search so that if it returns false it will return false
-                    || coinList.length < getRequiredCoins().length) { // or if number of coins associated with the broker is less than then number of coins associated with the strategy
-                return false;
+        boolean foundLayer1 = false;
+        for (int i = 0; i < coinList.length; i ++){
+            if (strategyCoin1.equals(coinList[i])){
+                foundLayer1 = true;
             }
         }
-        return true; // Both coins have been found
+        if (!foundLayer1){
+            return false;
+        }
+        boolean foundLayer2 = false;
+        for (int i = 0; i < coinList.length; i ++){
+            if (strategyCoin2.equals(coinList[i])){
+                foundLayer2 = true;
+            }
+        }
+        return foundLayer2;
     }
 }
