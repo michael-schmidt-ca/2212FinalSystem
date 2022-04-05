@@ -38,7 +38,7 @@ public class MainSystem {
     /**
      *
      * @param name name of the broker object
-     * @param coins list of coins the user inputted for the broker
+     * @param coins  list of coins the user inputted for the broker
      * @param strategy strategy the user chose for the broker to use
      */
     public static void addUserSelection(String name, String[] coins, String strategy){

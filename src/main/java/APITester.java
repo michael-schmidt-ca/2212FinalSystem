@@ -24,7 +24,7 @@ public class APITester {
                     infoString = infoString + sc.nextLine();
                 }
                 sc.close();
-                //System.out.println(infoString);
+
                 JSONParser parser = new JSONParser();
                 JSONObject json = (JSONObject) parser.parse(infoString);
 
