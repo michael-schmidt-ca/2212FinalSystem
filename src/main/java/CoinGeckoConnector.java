@@ -83,8 +83,6 @@ public class CoinGeckoConnector {
             }
             sc.close();
 
-            System.out.println(infoString);
-
             JSONParser parser = new JSONParser();
             JSONObject apiReturnJSON = (JSONObject) parser.parse(infoString);
 
