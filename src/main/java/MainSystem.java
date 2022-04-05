@@ -9,8 +9,7 @@ public class MainSystem {
     public static void main(String[] args) {
 
         //Display Login UI
-        //LoginUI.launchLogInUI();
-        MainUI.LaunchMainUI();
+        LoginUI.launchLogInUI();
         // attach observers
         attachObservers();
     }
@@ -19,10 +18,10 @@ public class MainSystem {
     //Else start Main UI
     public static void loginCheck(Boolean valid){
         if(valid){
-            //MainUI.LaunchMainUI();
+            MainUI.LaunchMainUI();
         }
         else{
-            //System.exit(0);
+            System.exit(0);
         }
     }
 
