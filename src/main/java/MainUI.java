@@ -62,6 +62,10 @@ public class MainUI extends JFrame implements ActionListener {
         return instance;
     }
 
+    /**
+     * method mainUI is launched when a new instance is created.
+     * creates the main user interface.
+     */
     MainUI() {
 
         // Set window title
@@ -123,25 +127,45 @@ public class MainUI extends JFrame implements ActionListener {
         getContentPane().add(south, BorderLayout.SOUTH);
     }
 
+    /**
+     * updates the states with the passed component.
+     * @param component
+     */
     public void updateStats(JComponent component) {
         stats.add(component);
         stats.revalidate();
     }
 
+    /**
+     * LaunchMainUI gets called from main system when log in is valid
+     */
     public static void LaunchMainUI() {
         JFrame frame = MainUI.getInstance();
         frame.setSize(900, 600);
         frame.pack();
         frame.setVisible(true);
     }
+
+    /**
+     * display error if a broker's coins has an error in it.
+     * @param b broker that has the coin Error
+     */
     public static void catchCoinError(Broker b){
         JOptionPane.showMessageDialog(null, "Unexpected Error\n"+"Broker: "+b.getName()+" Does not have the coins required for it's strategy");
     }
+
+    /**
+     * display error if a broker's coins has an error
+     * @param rowNum used to display which broker had duplicated broker
+     */
     public static void catchDoubleBroker(int rowNum){
         JOptionPane.showMessageDialog(null, "Unexpected Error\n A broker name has been inputted more than once\n Row "+rowNum+" was not added");
     }
 
     @Override
+    /**
+     * method takes action based on what is inputted from the user.
+     */
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         //Trade button is pressed
@@ -173,7 +197,7 @@ public class MainUI extends JFrame implements ActionListener {
                 String[] strategyNameList = strategyName.split(" ");
                 strategyName = strategyNameList[0].trim();
 
-                //trim each string in the list
+                //trim each string in the list of coins
                 for(int j=0; j<coinNames.length; j++){
                     coinNames[j] = coinNames[j].toLowerCase().trim();
                 }
