@@ -74,7 +74,7 @@ public class StrategyMomentumInvesting implements Strategy {
     /**
      *Check that the broker has the proper coins that are needed for the strategy to execute
      * @param coinList
-     * @return
+     * @return boolean object, true the broker associates with the required coins for the strategy, and false if it doesnt
      */
     private boolean validateUsrCoins(String[] coinList){
         for (String coin: coinList){

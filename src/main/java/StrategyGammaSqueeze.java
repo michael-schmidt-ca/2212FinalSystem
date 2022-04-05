@@ -6,34 +6,52 @@ public class StrategyGammaSqueeze implements Strategy{
     private final String stratName = "GAMMASTRAT";
     private final String strategyCoin1 = "ethereum";
     private final String strategyCoin2 = "bitcoin";
+    /**
+     * getter method for name of strategy
+     * @return name of strategy
+     */
     @Override
     public String getName() {
         return stratName;
     }
 
+    /**
+     *Determines which trade to make depending on the prices of coins
+     * @param coinList
+     * @param coinDataBase
+     * @param broker
+     * @return Strategy result Object
+     */
     @Override
     public StrategyResult determineExecution(String[] coinList, CoinsInfo coinDataBase, Broker broker) {
 
-        // if the required coins are not present the strategy will return a
+        // if the required coins are not present the strategy will return a failed strategy object
         if (!validateUsrCoins(coinList)) {
             MainUI.catchCoinError(broker);
             return new StrategyResult(-1 ,null,"Fail",java.time.LocalDate.now(),-1,broker, broker.getStrategy());
         }
-
-        if (coinDataBase.getCoinInfo(strategyCoin1).getPrice() > 45000 && coinDataBase.getCoinInfo(strategyCoin2).getPrice() > 4500){
+        // if ethereum > 4500 and bitCoin >45000 then buy 1000 ethereum coins
+        if (coinDataBase.getCoinInfo(strategyCoin1).getPrice() > 4500 && coinDataBase.getCoinInfo(strategyCoin2).getPrice() > 45000){
             StrategyResult testResult = new StrategyResult(1000, strategyCoin1,"Buy", LocalDate.now(),
                     coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
 
             return testResult;
+            // else buy 10 bitcoins
         } else {
-            StrategyResult testResult = new StrategyResult(0, strategyCoin1,"Buy", LocalDate.now(),
+            StrategyResult testResult = new StrategyResult(10, strategyCoin1,"Buy", LocalDate.now(),
                     coinDataBase.getCoinInfo(strategyCoin1).getPrice(),
                     broker, this);
             return testResult;
         }
 
     }
+    /**
+     * Searches if a coin is in a coinlist
+     * @param targetCoin
+     * @param coins
+     * @return a boolean, true if coin is in the list false if the coin is not in the list
+     */
     private boolean linearSearch(String targetCoin, String[] coins){ // simple linear search algo to find coin
         for (String coin: coins){
             if (targetCoin.toLowerCase(Locale.ROOT).equals(coin))
@@ -41,11 +59,18 @@ public class StrategyGammaSqueeze implements Strategy{
         }// end of loop
         return false;
     }
-
+    /**
+     * getter method for required coins
+     * @return String[] containing the coins the strategy is interested in
+     */
     public String[] getRequiredCoins(){
         return new String[]{strategyCoin1,strategyCoin2};
     }
-
+    /**
+     *Check that the broker has the proper coins that are needed for the strategy to execute
+     * @param coinList
+     * @return boolean object, true the broker associates with the required coins for the strategy, and false if it doesnt
+     */
     private boolean validateUsrCoins(String[] coinList){
         for (String coin: coinList){
             if (!(linearSearch(coin,getRequiredCoins()))|| coinList.length < getRequiredCoins().length) { // if coin not found or not enough coins
