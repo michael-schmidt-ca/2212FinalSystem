@@ -1,7 +1,7 @@
 /**
  * @author Xavier Hill Roy and Michael Schmidt
  * CS2212 - Intro to Software Engineering
- * @purpose This class is the broker that will st
+ * @purpose Class to store broker information and facilitate the processing and dispersion of trades
  */
 public class Broker {
     private String name;
