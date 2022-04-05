@@ -1,3 +1,14 @@
+/**
+ * @author Sam Near
+ * CS2212 - Intro to Software Engineering
+ * @purpose this class is the UI housing of the MainUI that will allow the client to interact with the back end of the
+ * Software System. This class, much like the LoginUI will take in user-inputs from either button prompts or text inputs
+ */
+
+
+//import libraries that will be used
+
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
