@@ -1,3 +1,8 @@
+/**
+ * @author Xavier Hill Roy
+ * CS2212 - Intro to Software Engineering
+ * @purpose This class stores the results of a broker executing a trade
+ */
 import java.time.LocalDate;
 
 public class StrategyResult {
