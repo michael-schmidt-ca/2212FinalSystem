@@ -69,7 +69,7 @@ public class MainUI extends JFrame implements ActionListener {
     MainUI() {
 
         // Set window title
-        super("Crypto Trading Tool");
+        super("<CoinTrader>");
 
         // Set top bar
         JPanel north = new JPanel();
