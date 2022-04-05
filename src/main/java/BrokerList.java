@@ -1,3 +1,10 @@
+/**
+ * @author Xavier Hill Roy and Michael Schmidt
+ * CS2212 - Intro to Software Engineering
+ * @purpose This class is a container for the broker and is the class contains the method that executes the trades.
+ * This class is what is changing the state of the subject in the observer design pattern this also implements
+ * the strategy design pattern as only the strategy selected by the client is implemented
+ */
 import java.util.ArrayList;
 
 /*BrokerList = Controller (Observer design pattern)*/
